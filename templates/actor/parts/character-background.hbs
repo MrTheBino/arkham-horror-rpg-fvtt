@@ -1,0 +1,32 @@
+<section class="tab {{tabs.background.id}} {{tabs.background.cssClass}} scrollable" id="background" data-tab="{{tabs.background.id}}" data-group="{{tabs.background.group}}">
+<div class="form-group">
+    <label for="placeOfOrigin">Place of Origin</label>
+    <input type="text" name="system.background.placeOfOrigin" id="placeOfOrigin" value="{{system.background.placeOfOrigin}}">
+</div>
+<div class="form-group">
+    <label for="familyAndFriends">Family and Friends</label>
+    <input type="text" name="system.background.familyAndFriends" id="familyAndFriends" value="{{system.background.familyAndFriends}}">
+</div>
+<div class="form-group">
+    <label for="employment">Employment</label>
+    <input type="text" name="system.background.employment" id="employment" value="{{system.background.employment}}">
+</div>
+<div class="form-group">
+    <label for="weeklySalary">Weekly Salary</label>
+    <input type="number" name="system.background.weeklySalary" id="weeklySalary" value="{{system.background.weeklySalary}}" data-dtype="Number">
+</div>
+<div class="form-group-editor">
+    <label for="firstSupernaturalEncounter">First Supernatural Encounter</label>
+    <prose-mirror name="system.background.firstSupernaturalEncounter" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.background.firstSupernaturalEncounter}}">
+            {{{firstSupernaturalEncounterHTML}}}
+        </prose-mirror>
+</div>
+<div class="form-group-editor">
+    <label for="notableEnemies">Notable Enemies</label>
+    <prose-mirror name="system.background.notableEnemies" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.background.notableEnemies}}">
+            {{{notableEnemiesHTML}}}
+        </prose-mirror>
+</div>
+</section>

@@ -1,0 +1,36 @@
+<header class="sheet-header">
+
+    <img class="portrait-img" data-action="editImage" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"
+        height="120" />
+
+    <div class="header-fields">
+
+
+        {{!-- Edit Mode Layout --}}
+        <div class="title">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
+                    placeholder="{{localize 'MIST_ENGINE.PLACEHOLDERS.Name'}}" /></h1>
+
+        </div>
+        <div class="other">
+            <div class="archetype-entry">
+                <label for="system.archetype">ARCHETYPE</label>
+                <input type="text" name="system.archetype" value="{{system.archetype}}" />
+            </div>
+            <div class="xp">
+                <div class="grid grid-2col">
+                    <div class="xp-entry">
+                        <label for="system.xp.total">Total XP earned:</label>
+                        <input type="number" name="system.xp.total" value="{{system.xp.total}}" data-dtype="Number" />
+                    </div>
+                    <div class="xp-entry">
+                        <label for="system.xp.unused">Unused XP:</label>
+                        <input type="number" name="system.xp.unused" value="{{system.xp.unused}}" data-dtype="Number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dicepool-container">
+            {{> systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-dicepool.hbs}}
+        </div>
+</header>

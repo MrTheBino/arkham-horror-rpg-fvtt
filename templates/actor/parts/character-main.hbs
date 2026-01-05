@@ -1,0 +1,37 @@
+<section class="tab {{tabs.character.id}} {{tabs.character.cssClass}} scrollable" id="character" data-tab="{{tabs.character.id}}" data-group="{{tabs.character.group}}">
+    <div class="character-sheet-divider">
+        <div class="left-side-40">
+            <fieldset>
+                <legend>SKILLS</legend>
+                <div class="skills-list">
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='agility'
+                    skillData=system.skills.agility label="Agility"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='athletics'
+                    skillData=system.skills.athletics label="Athletics"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='wits'
+                    skillData=system.skills.wits label="Wits"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='presence'
+                    skillData=system.skills.presence label="Presence"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='intuition'
+                    skillData=system.skills.intuition label="Intuition"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='knowledge'
+                    skillData=system.skills.knowledge label="Knowledge"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='resolve'
+                    skillData=system.skills.resolve label="Resolve"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='meleeCombat'
+                    skillData=system.skills.meleeCombat label="Melee Combat"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='rangedCombat'
+                    skillData=system.skills.rangedCombat label="Ranged Combat"}}
+                    {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/_skill.hbs" skillKey='lore'
+                    skillData=system.skills.lore label="Lore"}}
+                </div>
+            </fieldset>
+        </div>
+        <div class="right-side-60">
+            {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-insight.hbs"}}
+            {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-personality-trait.hbs"}}
+            {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-injuries.hbs"}}
+            {{> "systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-knacks.hbs"}}
+        </div>
+    </div>
+</section>

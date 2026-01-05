@@ -1,0 +1,21 @@
+<fieldset>
+    <legend>KNACKS</legend>
+    {{#each knacks as |knack|}}
+    <div class="knack-entry">
+        <div>
+            <strong class="clickable" data-action="toggleFoldableContent" data-fc-id="knack{{knack._id}}">Tier {{knack.system.tier}} - {{knack.name}} </strong>
+            <a class='item-control item-edit' data-action="editItem" title='{{localize "DOCUMENT.Update" type='
+                knack'}}' data-item-id='{{knack._id}}'>
+                <i class='fas fa-edit'></i>
+            </a>
+            <a class='item-control item-delete' data-action="deleteItem" title='{{localize "DOCUMENT.Delete" type='
+                knack'}}' data-item-id='{{knack._id}}'>
+                <i class='fas fa-trash'></i>
+            </a>
+        </div>
+        <div class="foldable-content" data-fc-id="knack{{knack._id}}">
+            {{{knack.system.description}}}
+        </div>
+    </div>
+    {{/each}}
+</fieldset>

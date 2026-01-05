@@ -1,0 +1,81 @@
+{
+  "ARKHAM_HORROR": {
+    "Ability": {
+      "Str": { "long": "Strength", "abbr": "str" },
+      "Con": { "long": "Constitution", "abbr": "con" },
+      "Dex": { "long": "Dexterity", "abbr": "dex" },
+      "Int": { "long": "Intelligence", "abbr": "int" },
+      "Wis": { "long": "Wisdom", "abbr": "wis" },
+      "Cha": { "long": "Charisma", "abbr": "cha" }
+    },
+    "SheetLabels": {
+      "Actor": "ArkhamHorror Actor Sheet",
+      "Item": "ArkhamHorror Item Sheet"
+    },
+    "Item": {
+      "Spell": {
+        "SpellLVL": "Level {level} Spells",
+        "AddLVL": "Add LVL {level}"
+      }
+    },
+    "Effect": {
+      "Source": "Source",
+      "Toggle": "Toggle Effect",
+      "Temporary": "Temporary Effects",
+      "Passive": "Passive Effects",
+      "Inactive": "Inactive Effects"
+    },
+    "LABELS": {
+      "Form": "Data",
+      "Description": "Description"
+    }
+  },
+  "TABS":{
+    "Character": "Character"
+  },
+  "ITEM":{
+    "Weapon": {
+      "skill": "Skill",
+      "damage": "Damage",
+      "range": "Range",
+      "injuryRating": "Injury Rating",
+      "ammunition": "Ammunition",
+      "cost": "Cost",
+      "specialRules": "Special Rules",
+      "ammunitionMax": "Ammunition Max"
+    },
+    "ProtectiveEquipment": {
+      "defensiveBenefit": "Defensive Benefit",
+      "specialRules": "Special Rules",
+      "cost": "Cost"
+    },
+    "Tome":{
+      "alternativeNames": "Alternative Names",
+      "knowledgeBonus": "Knowledge Bonus",
+      "rarity": "Rarity"
+    }
+  },
+  "SKILL":{
+    "rangedCombat": "Ranged Combat",
+    "meleeCombat": "Melee Combat"
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "item": "Item",
+      "feature": "Feature",
+      "spell": "Spell",
+      "knack": "Knack",
+      "personality_trait": "Personality Trait",
+      "weapon": "Weapon",
+      "protective_equipment": "Protective Equipment",
+      "useful_item": "Useful Item",
+      "tome": "Tome",
+      "relic": "Relic",
+      "injury": "Injury"
+    }
+  }
+}

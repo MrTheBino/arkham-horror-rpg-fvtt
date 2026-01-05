@@ -1,0 +1,21 @@
+<fieldset>
+    <legend>INJURIES</legend>
+    {{#each injuries as |injury|}}
+    <div class="injury-entry">
+        <div>
+            <strong class="clickable" data-action="toggleFoldableContent" data-fc-id="injury{{injury._id}}">{{injury.name}} </strong>
+            <a class='item-control item-edit' data-action="editItem" title='{{localize "DOCUMENT.Update" type='
+                injury'}}' data-item-id='{{injury._id}}'>
+                <i class='fas fa-edit'></i>
+            </a>
+            <a class='item-control item-delete' data-action="deleteItem" title='{{localize "DOCUMENT.Delete" type='
+                injury'}}' data-item-id='{{injury._id}}'>
+                <i class='fas fa-trash'></i>
+            </a>
+        </div>
+        <div class="foldable-content" data-fc-id="injury{{injury._id}}">
+            {{{injury.system.description}}}
+        </div>
+    </div>
+    {{/each}}
+</fieldset>

@@ -1,0 +1,22 @@
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form" data-tab="{{tabs.form.id}}"
+    data-group="{{tabs.form.group}}">
+
+    <div class="form-group">
+        <label for="cost">{{localize "ITEM.Weapon.cost"}}</label>
+        <input type="number" id="cost" name="system.cost" value="{{system.cost}}" min="0" />
+    </div>
+    <div class="form-group">
+        <label for="uses">{{localize "ITEM.UsefulItem.uses"}}</label>
+        <input type="number" id="uses" name="system.uses.current" value="{{system.uses.current}}" min="0" />
+        /
+        <input type="number" id="uses" name="system.uses.max" value="{{system.uses.max}}" min="0" />
+    </div>
+    <div class="form-group-rich-editor">
+        <label for="specialRules">{{localize "ITEM.ProtectiveEquipment.specialRules"}}</label>
+        <prose-mirror name="system.specialRules" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.specialRules}}">
+            {{{specialRulesHTML}}}
+        </prose-mirror>
+    </div>
+
+</section>

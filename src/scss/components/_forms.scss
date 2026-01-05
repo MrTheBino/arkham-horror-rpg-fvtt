@@ -1,0 +1,183 @@
+.item-form {
+  font-family: $font-primary;
+}
+
+.sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  min-height: 180px;
+
+  .profile-img {
+    flex: 0 0 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  .header-fields {
+    flex: 1;
+  }
+
+  h1.charname {
+    height: 50px;
+    padding: 0px;
+    margin: 5px 0;
+    border-bottom: 0;
+    input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.sheet-tabs {
+  flex: 0;
+}
+
+.sheet-body,
+.sheet-body .tab,
+.sheet-body .tab .editor {
+  height: 100%;
+}
+
+.tox {
+  .tox-editor-container {
+    background: $c-white;
+  }
+
+  .tox-edit-area {
+    padding: 0 8px;
+  }
+}
+
+.skill-entry{
+  background: green;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  label{
+    flex-grow: 2;
+    margin-right: 5px;
+  }
+}
+
+.character-sheet-divider{
+  align-items: start;
+  display: flex;
+  flex-direction: row;
+
+  .left-side-40{
+    min-width: 250px;
+  }
+
+  .right-side-60{
+    flex-grow: 0.60;
+    min-width: 390px;
+  }
+}
+
+.xp-entry{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+
+  label{
+    flex-grow: 0.7;
+    margin-right: 5px;
+  }
+  input{
+    width: 100px;
+  }
+}
+
+.archetype-entry{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+
+  label{
+    margin-right: 5px;
+  }
+  input{
+  }
+}
+
+.form-group{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin-bottom: 5px;
+  label{
+    margin-right: 5px;
+    flex-basis: 50%;
+    font-family: $font-primary;
+    font-size: 1.1em;
+  }
+}
+
+.form-group-editor{
+  label{
+    margin-right: 5px;
+    flex-basis: 50%;
+    font-family: $font-primary;
+    font-size: 1.1em;
+  }
+}
+
+fieldset{
+  legend{
+    font-family: $font-primary;
+    font-size: 1.2em;
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210,90,63,0.25);
+    text-transform: uppercase;
+  }
+}
+
+h5{
+  color: $c-light-red;
+  text-shadow: 1px 1px rgba(210,90,63,0.25);
+  border-bottom: 1px solid $c-red;
+  font-family: $font-primary;
+}
+
+h4{
+  color: $c-light-red;
+  text-shadow: 1px 1px rgba(210,90,63,0.25);
+  border-bottom: 1px solid $c-red;
+  font-family: $font-primary;
+}
+
+.foldable-content{
+  display: none;
+  &.collapsed{
+    display: block;
+  }
+}
+
+nav.tabs [data-group="sheet"] {
+
+  color: $c-light-red;
+  font-weight: bold;
+  font-family: $font-primary;
+  font-size: 1.1em;
+
+  .active {
+    color: black;
+    text-shadow: 1px 1px rgba(210,90,63,0.25);
+  }
+}
+
+.skill{
+  font-family: $font-primary;
+  font-size: 1.4em;
+  text-shadow: 1px 1px rgba(210,90,63,0.25);
+}

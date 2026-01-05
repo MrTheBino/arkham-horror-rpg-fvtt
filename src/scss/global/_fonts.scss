@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Voltaire&display=swap');
+
+@font-face {
+  font-family: Dicier;
+  src: url("../assets/fonts/Dicier-Flat-Heavy.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Dicier-Heavy;
+  src: url("../assets/fonts/Dicier-Flat-Dark.woff2") format("woff2");
+  font-weight: normal;
+}
+
+
+.dicier-icon {
+  font-family: Dicier, sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-size: 1.2em;
+
+  &.big {
+    font-size: 3.5em;
+  }
+}
+
+.dicier-icon-bold {
+  font-family: Dicier-Heavy, sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.voltaire-regular {
+  font-family: "Voltaire", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.color-d4 {
+  color: #00B1B9
+}
+
+.color-d6 {
+  color: #2B9C45;
+}
+
+.color-d8 {
+  color: #F29207;
+}
+
+.color-d10 {
+  color: #E15E02;
+}
+
+.color-d12 {
+  color: #B52215;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.social-dice {
+  font-size: 1.85em;
+}
+
+.dicepool-dice {
+  font-size: 1.85em;
+  &.used {
+    opacity: 0.3;
+  }
+  &.red{
+    color: red;
+  }
+}
+
+form>nav>a.item {
+  font-family: "Voltaire", sans-serif;
+  font-size: 1.2em;
+
+  &.active {
+    font-weight: bold;
+  }
+}
+
+.confirm-question-title{
+  font-family: "Voltaire", sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+}

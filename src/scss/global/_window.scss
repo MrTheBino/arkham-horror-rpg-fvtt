@@ -1,0 +1,41 @@
+.window-app {
+  font-family: $font-primary;
+}
+
+.rollable {
+  &:hover,
+  &:focus {
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+  }
+}
+
+.clickable {
+  &:hover,
+  &:focus {
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+  }
+}
+
+.character .window-content {
+  background: none;
+  background-image: url("../assets/images/sheet-background.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  color: $c-dark;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.item .window-content {
+  background: none;
+  background-image: url("../assets/images/sheet-background.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  color: $c-dark;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.85));
+}

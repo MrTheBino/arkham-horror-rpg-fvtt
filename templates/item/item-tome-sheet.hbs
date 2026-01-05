@@ -1,0 +1,23 @@
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form" data-tab="{{tabs.form.id}}"
+    data-group="{{tabs.form.group}}">
+
+    <div class="form-group">
+        <label for="rarity">{{localize "ITEM.Tome.rarity"}}</label>
+        Common<input type="checkbox" id="rarity" name="system.rarity.common" {{#if system.rarity.common}}checked{{/if}} />
+        Uncommon<input type="checkbox" id="rarity" name="system.rarity.uncommon" {{#if system.rarity.uncommon}}checked{{/if}} />
+        Rare<input type="checkbox" id="rarity" name="system.rarity.rare" {{#if system.rarity.rare}}checked{{/if}} />
+        Unique<input type="checkbox" id="rarity" name="system.rarity.unique" {{#if system.rarity.unique}}checked{{/if}} />
+    </div>
+
+    <div class="form-group">
+        <label for="alternativeNames">{{localize "ITEM.Tome.alternativeNames"}}</label>
+        <input type="text" id="alternativeNames" name="system.alternativeNames" value="{{system.alternativeNames}}" />
+    </div>
+
+    <div class="form-group">
+        <label for="knowledgeBonus">{{localize "ITEM.Tome.knowledgeBonus"}}</label>
+        <input type="text" id="knowledgeBonus" name="system.knowledgeBonus" value="{{system.knowledgeBonus}}" />
+    </div>
+
+
+</section>

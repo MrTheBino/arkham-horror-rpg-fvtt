@@ -1,0 +1,10 @@
+
+<span class="dicier-icon dicepool-dice color-d6 red" data-action="clickedClearDicePool" title="Clear">1_ON_D6</span>
+{{#each system.dicepoolPrepared as |die|}}
+    <span class="dicier-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool" data-die-index="{{die.index}}">6_ON_D6</span>
+{{/each}}
+
+
+
+
+{{!-- Example with 6 dice in the pool and max of 6 --}}

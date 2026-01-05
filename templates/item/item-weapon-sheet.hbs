@@ -1,0 +1,38 @@
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form"
+    data-tab="{{tabs.form.id}}" data-group="{{tabs.form.group}}">
+
+    <div class="form-group">
+        <label for="skill">{{localize "ITEM.Weapon.skill"}}</label>
+        <select id="skill" name="system.skill">
+            <option value="meleeCombat" {{#if (eq system.skill "meleeCombat")}}selected{{/if}}>{{localize "SKILL.meleeCombat"}}</option>
+            <option value="rangedCombat" {{#if (eq system.skill "rangedCombat")}}selected{{/if}}>{{localize "SKILL.rangedCombat"}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="damage">{{localize "ITEM.Weapon.damage"}}</label>
+        <input type="number" id="damage" name="system.damage" value="{{system.damage}}" min="1"/>
+    </div>
+    <div class="form-group">
+        <label for="range">{{localize "ITEM.Weapon.range"}}</label>
+        <input type="number" id="range" name="system.range" value="{{system.range}}" min="0"/>
+    </div>
+    <div class="form-group">
+        <label for="injuryRating">{{localize "ITEM.Weapon.injuryRating"}}</label>
+        <input type="number" id="injuryRating" name="system.injuryRating" value="{{system.injuryRating}}" min="0"/> 
+    </div>
+    <div class="form-group">
+        <label for="ammunitionMax">{{localize "ITEM.Weapon.ammunitionMax"}}</label>
+        <input type="number" id="ammunitionMax" name="system.ammunition.max" value="{{system.ammunition.max}}" min="0"/>
+    </div>
+    <div class="form-group">
+        <label for="cost">{{localize "ITEM.Weapon.cost"}}</label>
+        <input type="number" id="cost" name="system.cost" value="{{system.cost}}" min="0"/>
+    </div>
+    <div class="form-group-rich-editor">
+        <label for="specialRules">{{localize "ITEM.Weapon.specialRules"}}</label>
+        <prose-mirror name="system.specialRules" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.specialRules}}">
+            {{{specialRulesHTML}}}
+        </prose-mirror>
+    </div>
+</section>

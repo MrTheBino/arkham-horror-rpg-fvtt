@@ -1,0 +1,120 @@
+<section class="tab {{tabs.supernatural_resources.id}} {{tabs.supernatural_resources.cssClass}} scrollable" id="supernatural_resources" data-tab="{{tabs.supernatural_resources.id}}" data-group="{{tabs.supernatural_resources.group}}">
+    <div class="resource-group">
+        <!-- Tomes -->
+        <h5 class="quick-label">Tomes</h5>
+        <ol class='items-list'>
+            <li class='item flexrow items-header'>
+                <div class='item-name'>{{localize 'Name'}}</div>
+                <div class='item-prop'>Rarity</div>
+                <div class='item-controls'>
+                    <a class='item-control item-create' data-action="createItem"
+                        title='{{localize "DOCUMENT.Create" type=' Item'}}' data-type='tome'>
+                        <i class='fas fa-plus'></i>
+                    </a>
+                </div>
+            </li>
+            {{#each tomes as |item id|}}
+            <li class='item' data-item-id='{{item._id}}'>
+                <div class="flexrow">
+                    <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="tome{{item._id}}">
+                        <div class='item-image'>
+                            <a class='clickable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-prop'>
+                        {{#if item.system.rarity.common}}
+                            Common
+                        {{/if}}
+                        {{#if item.system.rarity.rare}}
+                            Rare
+                        {{/if}}
+                        {{#if item.system.rarity.unique}}
+                            Unique
+                        {{/if}}
+                        {{#if item.system.rarity.uncommon}}
+                            Uncommon    
+                        {{/if}}
+                        </div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type=' Item'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
+                            <i class='fas fa-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="foldable-content" data-fc-id="tome{{item._id}}">
+                    <div>
+                        {{{item.system.description}}}
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+    <div class="resource-group">
+        <!-- Relics -->
+        <h5 class="quick-label">Relics</h5>
+        <ol class='items-list'>
+            <li class='item flexrow items-header'>
+                <div class='item-name'>{{localize 'Name'}}</div>
+                <div class='item-prop'>Rarity</div>
+                <div class='item-controls'>
+                    <a class='item-control item-create' data-action="createItem"
+                        title='{{localize "DOCUMENT.Create" type=' Item'}}' data-type='relic'>
+                        <i class='fas fa-plus'></i>
+                    </a>
+                </div>
+            </li>
+            {{#each relics as |item id|}}
+            <li class='item' data-item-id='{{item._id}}'>
+                <div class="flexrow">
+                    <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="relic{{item._id}}">
+                        <div class='item-image'>
+                            <a class='clickable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-prop'>
+                        {{#if item.system.rarity.common}}
+                            Common
+                        {{/if}}
+                        {{#if item.system.rarity.rare}}
+                            Rare
+                        {{/if}}
+                        {{#if item.system.rarity.unique}}
+                            Unique
+                        {{/if}}
+                        {{#if item.system.rarity.uncommon}}
+                            Uncommon    
+                        {{/if}}
+                        </div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type='relic'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type='relic'}}'>
+                            <i class='fas fa-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="foldable-content" data-fc-id="relic{{item._id}}">
+                    <div>
+                        {{{item.system.description}}}
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</section>

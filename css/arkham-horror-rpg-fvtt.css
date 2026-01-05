@@ -1,0 +1,587 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/* Global styles */
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Voltaire&display=swap");
+.window-app {
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+
+.rollable:hover, .rollable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+
+.clickable:hover, .clickable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+
+.character .window-content {
+  background: none;
+  background-image: url("../assets/images/sheet-background.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  color: #191813;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.item .window-content {
+  background: none;
+  background-image: url("../assets/images/sheet-background.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  color: #191813;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.grid,
+.grid-2col {
+  display: grid;
+  grid-column: span 2/span 2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.grid-3col {
+  grid-column: span 3/span 3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4col {
+  grid-column: span 4/span 4;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-5col {
+  grid-column: span 5/span 5;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-6col {
+  grid-column: span 6/span 6;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-7col {
+  grid-column: span 7/span 7;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-8col {
+  grid-column: span 8/span 8;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-9col {
+  grid-column: span 9/span 9;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-10col {
+  grid-column: span 10/span 10;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-11col {
+  grid-column: span 11/span 11;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-12col {
+  grid-column: span 12/span 12;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-start-2 {
+  grid-column-start: 2;
+}
+
+.grid-start-3 {
+  grid-column-start: 3;
+}
+
+.grid-start-4 {
+  grid-column-start: 4;
+}
+
+.grid-start-5 {
+  grid-column-start: 5;
+}
+
+.grid-start-6 {
+  grid-column-start: 6;
+}
+
+.grid-start-7 {
+  grid-column-start: 7;
+}
+
+.grid-start-8 {
+  grid-column-start: 8;
+}
+
+.grid-start-9 {
+  grid-column-start: 9;
+}
+
+.grid-start-10 {
+  grid-column-start: 10;
+}
+
+.grid-start-11 {
+  grid-column-start: 11;
+}
+
+.grid-start-12 {
+  grid-column-start: 12;
+}
+
+.grid-span-2 {
+  grid-column-end: span 2;
+}
+
+.grid-span-3 {
+  grid-column-end: span 3;
+}
+
+.grid-span-4 {
+  grid-column-end: span 4;
+}
+
+.grid-span-5 {
+  grid-column-end: span 5;
+}
+
+.grid-span-6 {
+  grid-column-end: span 6;
+}
+
+.grid-span-7 {
+  grid-column-end: span 7;
+}
+
+.grid-span-8 {
+  grid-column-end: span 8;
+}
+
+.grid-span-9 {
+  grid-column-end: span 9;
+}
+
+.grid-span-10 {
+  grid-column-end: span 10;
+}
+
+.grid-span-11 {
+  grid-column-end: span 11;
+}
+
+.grid-span-12 {
+  grid-column-end: span 12;
+}
+
+.flex-group-center,
+.flex-group-left,
+.flex-group-right {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flex-group-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.flex-group-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.flexshrink {
+  flex: 0;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flexlarge {
+  flex: 2;
+}
+
+.align-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.align-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.align-center {
+  justify-content: center;
+  text-align: center;
+}
+
+@font-face {
+  font-family: Dicier;
+  src: url("../assets/fonts/Dicier-Flat-Heavy.woff2") format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Dicier-Heavy;
+  src: url("../assets/fonts/Dicier-Flat-Dark.woff2") format("woff2");
+  font-weight: normal;
+}
+.dicier-icon {
+  font-family: Dicier, sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-size: 1.2em;
+}
+.dicier-icon.big {
+  font-size: 3.5em;
+}
+
+.dicier-icon-bold {
+  font-family: Dicier-Heavy, sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.voltaire-regular {
+  font-family: "Voltaire", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.color-d4 {
+  color: #00B1B9;
+}
+
+.color-d6 {
+  color: #2B9C45;
+}
+
+.color-d8 {
+  color: #F29207;
+}
+
+.color-d10 {
+  color: #E15E02;
+}
+
+.color-d12 {
+  color: #B52215;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.social-dice {
+  font-size: 1.85em;
+}
+
+.dicepool-dice {
+  font-size: 1.85em;
+}
+.dicepool-dice.used {
+  opacity: 0.3;
+}
+.dicepool-dice.red {
+  color: red;
+}
+
+form > nav > a.item {
+  font-family: "Voltaire", sans-serif;
+  font-size: 1.2em;
+}
+form > nav > a.item.active {
+  font-weight: bold;
+}
+
+.confirm-question-title {
+  font-family: "Voltaire", sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.editor.prosemirror {
+  height: 100%;
+}
+
+/* Styles limited to arkham-horror-rpg-fvtt sheets */
+.system-arkham-horror-rpg-fvtt .item-form {
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+.system-arkham-horror-rpg-fvtt .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  min-height: 180px;
+}
+.system-arkham-horror-rpg-fvtt .sheet-header .profile-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.system-arkham-horror-rpg-fvtt .sheet-header .header-fields {
+  flex: 1;
+}
+.system-arkham-horror-rpg-fvtt .sheet-header h1.charname {
+  height: 50px;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+.system-arkham-horror-rpg-fvtt .sheet-header h1.charname input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.system-arkham-horror-rpg-fvtt .sheet-tabs {
+  flex: 0;
+}
+.system-arkham-horror-rpg-fvtt .sheet-body,
+.system-arkham-horror-rpg-fvtt .sheet-body .tab,
+.system-arkham-horror-rpg-fvtt .sheet-body .tab .editor {
+  height: 100%;
+}
+.system-arkham-horror-rpg-fvtt .tox .tox-editor-container {
+  background: #fff;
+}
+.system-arkham-horror-rpg-fvtt .tox .tox-edit-area {
+  padding: 0 8px;
+}
+.system-arkham-horror-rpg-fvtt .skill-entry {
+  background: green;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.system-arkham-horror-rpg-fvtt .skill-entry label {
+  flex-grow: 2;
+  margin-right: 5px;
+}
+.system-arkham-horror-rpg-fvtt .character-sheet-divider {
+  align-items: start;
+  display: flex;
+  flex-direction: row;
+}
+.system-arkham-horror-rpg-fvtt .character-sheet-divider .left-side-40 {
+  min-width: 250px;
+}
+.system-arkham-horror-rpg-fvtt .character-sheet-divider .right-side-60 {
+  flex-grow: 0.6;
+  min-width: 390px;
+}
+.system-arkham-horror-rpg-fvtt .xp-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+.system-arkham-horror-rpg-fvtt .xp-entry label {
+  flex-grow: 0.7;
+  margin-right: 5px;
+}
+.system-arkham-horror-rpg-fvtt .xp-entry input {
+  width: 100px;
+}
+.system-arkham-horror-rpg-fvtt .archetype-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+.system-arkham-horror-rpg-fvtt .archetype-entry label {
+  margin-right: 5px;
+}
+.system-arkham-horror-rpg-fvtt .form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin-bottom: 5px;
+}
+.system-arkham-horror-rpg-fvtt .form-group label {
+  margin-right: 5px;
+  flex-basis: 50%;
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.1em;
+}
+.system-arkham-horror-rpg-fvtt .form-group-editor label {
+  margin-right: 5px;
+  flex-basis: 50%;
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.1em;
+}
+.system-arkham-horror-rpg-fvtt fieldset legend {
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.2em;
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  text-transform: uppercase;
+}
+.system-arkham-horror-rpg-fvtt h5 {
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  border-bottom: 1px solid #722A1C;
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+.system-arkham-horror-rpg-fvtt h4 {
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  border-bottom: 1px solid #722A1C;
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+.system-arkham-horror-rpg-fvtt .foldable-content {
+  display: none;
+}
+.system-arkham-horror-rpg-fvtt .foldable-content.collapsed {
+  display: block;
+}
+.system-arkham-horror-rpg-fvtt nav.tabs [data-group=sheet] {
+  color: #2B100A;
+  font-weight: bold;
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.1em;
+}
+.system-arkham-horror-rpg-fvtt nav.tabs [data-group=sheet] .active {
+  color: black;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+}
+.system-arkham-horror-rpg-fvtt .skill {
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.4em;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+}
+.system-arkham-horror-rpg-fvtt .resource-label {
+  font-weight: bold;
+}
+.system-arkham-horror-rpg-fvtt .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+.system-arkham-horror-rpg-fvtt .items-header > * {
+  font-size: 14px;
+  text-align: center;
+}
+.system-arkham-horror-rpg-fvtt .items-header .item-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: flex;
+}
+.system-arkham-horror-rpg-fvtt .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: #444;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-name h3, .system-arkham-horror-rpg-fvtt .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-controls {
+  display: flex;
+  flex: 0 0 100px;
+  justify-content: flex-end;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item {
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #c9c7b8;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item:last-child {
+  border-bottom: none;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item .item-name {
+  color: #191813;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item .item-name .item-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+.system-arkham-horror-rpg-fvtt .items-list .item-prop {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.system-arkham-horror-rpg-fvtt .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+.system-arkham-horror-rpg-fvtt .items-list .items-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+.system-arkham-horror-rpg-fvtt .items-list .items-header .item-name {
+  padding-left: 5px;
+  text-align: left;
+}
+.system-arkham-horror-rpg-fvtt .item-formula {
+  flex: 0 0 200px;
+  padding: 0 8px;
+}
+.system-arkham-horror-rpg-fvtt .effects .item .effect-source,
+.system-arkham-horror-rpg-fvtt .effects .item .effect-duration,
+.system-arkham-horror-rpg-fvtt .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.system-arkham-horror-rpg-fvtt .effects .item .effect-controls {
+  border: none;
+}
+
+/*# sourceMappingURL=arkham-horror-rpg-fvtt.css.map */

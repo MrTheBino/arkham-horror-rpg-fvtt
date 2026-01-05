@@ -1,0 +1,15 @@
+<fieldset>
+    <legend>Personality Trait</legend>
+    {{#if personalityTrait}}
+        <div class="item-card">
+            <h4 data-action="toggleFoldableContent" class="clickable"data-fc-id="personalityTrait{{personalityTrait._id}}">{{personalityTrait.name}}</h4>
+            <div class="foldable-content" data-fc-id="personalityTrait{{personalityTrait._id}}">
+            <p>{{{personalityTrait.system.description}}}</p>
+            </div>
+            <p><strong>Positive:</strong> {{personalityTrait.system.positive}}</p>
+            <p><strong>Negative:</strong> {{personalityTrait.system.negative}}</p>
+        </div>
+    {{else}}
+        <p>No personality trait assigned. Drag'N'Drop one here.</p>
+    {{/if}}
+</fieldset>

@@ -20,7 +20,7 @@ everything on your own. This system provides only the necessary sheets and item 
 
 ## Manifest-URL for manual installation of the system
 
-    https://github.com/MrTheBino/arkham-horror-foundry-vtt/releases/latest/download/system.json
+    https://github.com/MrTheBino/arkham-horror-rpg-fvtt/releases/latest/download/system.json
 
 
 ## Version schema

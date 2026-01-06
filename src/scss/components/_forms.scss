@@ -12,6 +12,10 @@
   margin-bottom: 10px;
   min-height: 180px;
 
+  &.npc {
+    min-height: 150px;
+  }
+
   .profile-img {
     flex: 0 0 100px;
     height: 100px;
@@ -55,7 +59,7 @@
   }
 }
 
-.skill-entry{
+.skill-entry {
   background: green;
   flex: 1;
   display: flex;
@@ -63,59 +67,59 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
-  label{
+  label {
     flex-grow: 2;
     margin-right: 5px;
   }
 }
 
-.character-sheet-divider{
+.character-sheet-divider {
   align-items: start;
   display: flex;
   flex-direction: row;
 
-  .left-side-40{
+  .left-side-40 {
     min-width: 250px;
   }
 
-  .right-side-60{
-    flex-grow: 0.60;
+  .right-side-60 {
+    flex-grow: 0.6;
     min-width: 390px;
   }
 }
 
-.xp-entry{
+.xp-entry {
   display: flex;
   flex-direction: row;
   align-items: start;
 
-  label{
+  label {
     flex-grow: 0.7;
     margin-right: 5px;
   }
-  input{
+  input {
     width: 100px;
   }
 }
 
-.archetype-entry{
+.archetype-entry {
   display: flex;
   flex-direction: row;
   align-items: start;
 
-  label{
+  label {
     margin-right: 5px;
   }
-  input{
+  input {
   }
 }
 
-.form-group{
+.form-group {
   display: flex;
   flex-direction: row;
   align-items: start;
   margin-bottom: 5px;
-  label{
+  label {
     margin-right: 5px;
     flex-basis: 50%;
     font-family: $font-primary;
@@ -123,8 +127,8 @@
   }
 }
 
-.form-group-editor{
-  label{
+.form-group-editor {
+  label {
     margin-right: 5px;
     flex-basis: 50%;
     font-family: $font-primary;
@@ -132,41 +136,59 @@
   }
 }
 
-fieldset{
-  legend{
+fieldset {
+  legend {
     font-family: $font-primary;
     font-size: 1.2em;
     color: $c-light-red;
-    text-shadow: 1px 1px rgba(210,90,63,0.25);
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
     text-transform: uppercase;
   }
 }
 
-.sheet{
-h5{
-  color: $c-light-red;
-  text-shadow: 1px 1px rgba(210,90,63,0.25);
-  border-bottom: 1px solid $c-red;
-  font-family: $font-primary;
-}
+.sheet {
+  h5 {
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    border-bottom: 1px solid $c-red;
+    font-family: $font-primary;
+  }
 
-h4{
-  color: $c-light-red;
-  text-shadow: 1px 1px rgba(210,90,63,0.25);
-  border-bottom: 1px solid $c-red;
-  font-family: $font-primary;
-}
+  h4 {
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    border-bottom: 1px solid $c-red;
+    font-family: $font-primary;
+  }
 
-}
-.foldable-content{
+  h3 {
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    border-bottom: 1px solid $c-red;
+    font-family: $font-primary;
+  }
+  h2 {
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    border-bottom: 1px solid $c-red;
+    font-family: $font-primary;
+  }
+  h1 {
+    color: $c-light-red;
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    border-bottom: 1px solid $c-red;
+    font-family: $font-primary;
+  }
+} // end of sheet
+
+.foldable-content {
   display: none;
-  &.collapsed{
+  &.collapsed {
     display: block;
   }
 }
 
 nav.tabs [data-group="sheet"] {
-
   color: $c-light-red;
   font-weight: bold;
   font-family: $font-primary;
@@ -174,47 +196,47 @@ nav.tabs [data-group="sheet"] {
 
   .active {
     color: black;
-    text-shadow: 1px 1px rgba(210,90,63,0.25);
+    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   }
 }
 
-.skill{
+.skill {
   font-family: $font-primary;
   font-size: 1.4em;
-  text-shadow: 1px 1px rgba(210,90,63,0.25);
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
 }
 
-.npc-skill{
+.npc-skill {
   font-family: $font-primary;
   font-size: 1.4em;
-  text-shadow: 1px 1px rgba(210,90,63,0.25);
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   text-align: center;
   width: 100%;
   display: block;
 }
 
-.small-input{
+.small-input {
   width: 30px;
 }
 
-.dice-icon{
-  img{
+.dice-icon {
+  img {
     height: 32px;
     border-radius: 10%;
   }
 }
 
-.dicepool-display{
+.dicepool-display {
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  .dicepool-dice{
+  .dicepool-dice {
     margin-right: 5px;
   }
 }
 
-.styled-label{
+.styled-label {
   font-family: $font-primary;
   font-size: 1.1em;
 }
@@ -226,5 +248,9 @@ nav.tabs [data-group="sheet"] {
 }
 
 .tab-description {
+  height: 100%;
+}
+
+.form-group-rich-editor {
   height: 100%;
 }

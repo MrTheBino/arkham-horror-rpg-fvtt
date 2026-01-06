@@ -40,8 +40,9 @@
                 </div>
             </li>
             {{#each weapons as |item id|}}
-            <li class='item flexrow' data-item-id='{{item._id}}'>
-                <div class='item-name'>
+            <li class='item ' data-item-id='{{item._id}}'>
+                <div class="flexrow">
+                <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="weapon{{item._id}}">
                     <div class='item-image'>
                         <a class='rollable' data-roll-type='item'>
                             <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
@@ -66,6 +67,13 @@
                         <i class='fas fa-trash'></i>
                     </a>
                 </div>
+                </div>
+                <div class="foldable-content" data-fc-id="weapon{{item._id}}">
+                    <div>
+                        <strong>Special Rules:</strong>
+                        {{{item.system.specialRules}}}
+                    </div>
+                </div>  
             </li>
             {{/each}}
         </ol>

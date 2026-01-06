@@ -378,6 +378,9 @@ form > nav > a.item.active {
   margin-bottom: 10px;
   min-height: 180px;
 }
+.system-arkham-horror-rpg-fvtt .sheet-header.npc {
+  min-height: 150px;
+}
 .system-arkham-horror-rpg-fvtt .sheet-header .profile-img {
   flex: 0 0 100px;
   height: 100px;
@@ -493,6 +496,24 @@ form > nav > a.item.active {
   border-bottom: 1px solid #722A1C;
   font-family: "MODESTO CONDENSED", sans-serif;
 }
+.system-arkham-horror-rpg-fvtt .sheet h3 {
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  border-bottom: 1px solid #722A1C;
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+.system-arkham-horror-rpg-fvtt .sheet h2 {
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  border-bottom: 1px solid #722A1C;
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
+.system-arkham-horror-rpg-fvtt .sheet h1 {
+  color: #2B100A;
+  text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+  border-bottom: 1px solid #722A1C;
+  font-family: "MODESTO CONDENSED", sans-serif;
+}
 .system-arkham-horror-rpg-fvtt .foldable-content {
   display: none;
 }
@@ -547,6 +568,9 @@ form > nav > a.item.active {
   text-align: center;
 }
 .system-arkham-horror-rpg-fvtt .tab-description {
+  height: 100%;
+}
+.system-arkham-horror-rpg-fvtt .form-group-rich-editor {
   height: 100%;
 }
 .system-arkham-horror-rpg-fvtt .resource-label {

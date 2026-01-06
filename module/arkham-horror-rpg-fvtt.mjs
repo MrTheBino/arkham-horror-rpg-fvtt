@@ -68,19 +68,19 @@ Hooks.once('init', function () {
   CONFIG.ActiveEffect.legacyTransferral = false;
 
   // Register sheet application classes
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorActorSheet, {
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorActorSheet, {
     makeDefault: true,
     types: ['character'],
     label: 'ARKHAM_HORROR.SheetLabels.Actor',
   });
-  Actors.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorNpcSheet, {
+  foundry.documents.collections.Actors.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorNpcSheet, {
     makeDefault: false,
     types: ['npc'],
     label: 'ARKHAM_HORROR.SheetLabels.NPC',
   });
-  Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorItemSheet, {
+  foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+  foundry.documents.collections.Items.registerSheet('arkham-horror-rpg-fvtt', ArkhamHorrorItemSheet, {
     makeDefault: true,
     label: 'ARKHAM_HORROR.SheetLabels.Item',
   });

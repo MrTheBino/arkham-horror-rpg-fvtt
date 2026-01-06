@@ -1,17 +1,21 @@
-<section class="tab {{tabs.mundane_resources.id}} {{tabs.mundane_resources.cssClass}} scrollable" id="mundane_resources" data-tab="{{tabs.mundane_resources.id}}" data-group="{{tabs.mundane_resources.group}}">
+<section class="tab {{tabs.mundane_resources.id}} {{tabs.mundane_resources.cssClass}} scrollable" id="mundane_resources"
+    data-tab="{{tabs.mundane_resources.id}}" data-group="{{tabs.mundane_resources.group}}">
     <div class="form-group">
         <label for="money">Money</label>
-        <input type="number" name="system.mundaneResources.money" id="money" value="{{system.mundaneResources.money}}" data-dtype="Number">
+        <input type="number" name="system.mundaneResources.money" id="money" value="{{system.mundaneResources.money}}"
+            data-dtype="Number">
     </div>
     <div class="form-group">
         <label for="vehicle">Vehicle</label>
-        <input type="text" name="system.mundaneResources.vehicle" id="vehicle" value="{{system.mundaneResources.vehicle}}" data-dtype="String">
+        <input type="text" name="system.mundaneResources.vehicle" id="vehicle"
+            value="{{system.mundaneResources.vehicle}}" data-dtype="String">
     </div>
     <div class="form-group">
         <label for="lodging">Lodging</label>
-        <input type="text" name="system.mundaneResources.lodging" id="lodging" value="{{system.mundaneResources.lodging}}" data-dtype="String">
+        <input type="text" name="system.mundaneResources.lodging" id="lodging"
+            value="{{system.mundaneResources.lodging}}" data-dtype="String">
     </div>
-      <div class="resource-group">
+    <div class="resource-group">
         <!-- Weapons -->
         <h5 class="quick-label">Weapons</h5>
         <ol class='items-list'>
@@ -31,31 +35,33 @@
             {{#each weapons as |item id|}}
             <li class='item ' data-item-id='{{item._id}}'>
                 <div class="flexrow">
-                <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="weapon{{item._id}}">
-                    <div class='item-image'>
-                        <a class='rollable' data-roll-type='item'>
-                            <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                        data-fc-id="weapon{{item._id}}">
+                        <div class='item-image'>
+                            <a class='rollable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-prop'>{{localize (concat "ARKHAM_HORROR.SKILL." item.system.skill)}}</div>
+                    <div class='item-prop'>{{item.system.damage}}</div>
+                    <div class='item-prop'>{{item.system.injuryRating}}</div>
+                    <div class='item-prop'><input type="text" value="{{item.system.ammunition.current}}"
+                            data-item-stat="system.ammunition.current" class="item-editable-stat ammo_input"> /
+                        {{item.system.ammunition.max}} <span class="weapon-reload-icon" data-item-id='{{item._id}}'
+                            data-action="clickWeaponReload" title="{reload"><i
+                                class="fa-solid fa-rotate clickable"></i></span></div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type=' Item'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
+                            <i class='fas fa-trash'></i>
                         </a>
                     </div>
-                    <span>{{item.name}}</span>
-                </div>
-                <div class='item-prop'>{{localize (concat "ARKHAM_HORROR.SKILL." item.system.skill)}}</div>
-                <div class='item-prop'>{{item.system.damage}}</div>
-                <div class='item-prop'>{{item.system.injuryRating}}</div>
-                <div class='item-prop'><input type="text" value="{{item.system.ammunition.current}}" data-item-stat="system.ammunition.current"
-                            class="item-editable-stat ammo_input"> / {{item.system.ammunition.max}} <span class="weapon-reload-icon" data-item-id='{{item._id}}' data-action="clickWeaponReload"
-                            title="{reload"><i
-                                class="fa-solid fa-rotate clickable"></i></span></div>
-                <div class='item-controls'>
-                    <a class='item-control item-edit' data-action="editItem" title='{{localize "DOCUMENT.Update" type='
-                        Item'}}'>
-                        <i class='fas fa-edit'></i>
-                    </a>
-                    <a class='item-control item-delete' data-action="deleteItem"
-                        title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
-                        <i class='fas fa-trash'></i>
-                    </a>
-                </div>
                 </div>
                 <div class="foldable-content" data-fc-id="weapon{{item._id}}">
                     <div>
@@ -84,7 +90,8 @@
             {{#each protectiveEquipments as |item id|}}
             <li class='item' data-item-id='{{item._id}}'>
                 <div class="flexrow">
-                    <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="protectiveEquipment{{item._id}}">
+                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                        data-fc-id="protectiveEquipment{{item._id}}">
                         <div class='item-image'>
                             <a class='clickable' data-roll-type='item'>
                                 <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
@@ -130,7 +137,7 @@
                 <div class='item-prop'>Uses</div>
                 <div class='item-controls'>
                     <a class='item-control item-create' data-action="createItem"
-                        title='{{localize "DOCUMENT.Create" type='Useful Item'}}' data-type='useful_item'>
+                        title='{{localize "DOCUMENT.Create" type=' Useful Item'}}' data-type='useful_item'>
                         <i class='fas fa-plus'></i>
                     </a>
                 </div>
@@ -138,7 +145,8 @@
             {{#each usefulItems as |item id|}}
             <li class='item' data-item-id='{{item._id}}'>
                 <div class="flexrow">
-                    <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="usefulItem{{item._id}}">
+                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                        data-fc-id="usefulItem{{item._id}}">
                         <div class='item-image'>
                             <a class='clickable' data-roll-type='item'>
                                 <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
@@ -147,8 +155,9 @@
                         <span>{{item.name}}</span>
                     </div>
                     <div class='item-prop'>{{item.system.costs}}</div>
-                    <div class="item-prop"><input type="text" value="{{item.system.uses.current}}" data-item-stat="system.uses.current"
-                            class="item-editable-stat ammo_input"> / {{item.system.uses.max}}</div>
+                    <div class="item-prop"><input type="text" value="{{item.system.uses.current}}"
+                            data-item-stat="system.uses.current" class="item-editable-stat ammo_input"> /
+                        {{item.system.uses.max}}</div>
                     <div class='item-controls'>
                         <a class='item-control item-edit' data-action="editItem"
                             title='{{localize "DOCUMENT.Update" type=' Item'}}'>

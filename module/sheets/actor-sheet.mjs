@@ -5,7 +5,6 @@ import { ArkhamHorrorItem } from "../documents/item.mjs";
 import { DiceRollApp } from '../apps/dice-roll-app.mjs';
 
 export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
-    #dragDrop // Private field to hold dragDrop handlers
 
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
@@ -52,7 +51,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             id: 'tabs',
             template: 'templates/generic/tab-navigation.hbs'
         },
-        character: {
+       character: {
             id: 'character',
             template: 'systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-main.hbs',
             scrollable: ['']
@@ -71,14 +70,6 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             id: 'supernatural_resources',
             template: 'systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-supernatural-resources.hbs',
             scrollable: ['']
-        },
-        biography: {
-            id: 'biography',
-            template: 'systems/arkham-horror-rpg-fvtt/templates/shared/tab-biography.hbs'
-        },
-        notes: {
-            id: 'notes',
-            template: 'systems/arkham-horror-rpg-fvtt/templates/shared/tab-notes.hbs'
         }
     }
 
@@ -101,7 +92,13 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
 
     constructor(options = {}) {
         super(options)
-        //this.#dragDrop = this.#createDragDropHandlers()
+    }
+
+    async _onDropItem(event, data) {
+        console.log(data);
+
+        // Standardverhalten beibehalten
+        return super._onDropItem(event, data);
     }
 
     /* @inheritDoc */
@@ -209,7 +206,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
 
     /** @inheritDoc */
     _onRender(context, options) {
-        //this.#dragDrop.forEach((d) => d.bind(this.element))
+        super._onRender(context, options);
 
         const itemEditableStatsElements = this.element.querySelectorAll('.item-editable-stat')
         for (const input of itemEditableStatsElements) {

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 13.0.4 preview
+- bug fixes
+
 ## 13.0.3 preview
 - slightly improved npc sheet
 - some styling fixes

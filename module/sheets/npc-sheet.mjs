@@ -174,7 +174,7 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
 
     /** @inheritDoc */
     _onRender(context, options) {
-        //this.#dragDrop.forEach((d) => d.bind(this.element))
+        super._onRender(context, options);
 
         const itemEditableStatsElements = this.element.querySelectorAll('.item-editable-stat')
         for (const input of itemEditableStatsElements) {

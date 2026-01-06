@@ -147,37 +147,39 @@ fieldset {
 }
 
 .sheet {
-  h5 {
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    border-bottom: 1px solid $c-red;
-    font-family: $font-primary;
-  }
+  .window-content {
+    h5 {
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      border-bottom: 1px solid $c-red;
+      font-family: $font-primary;
+    }
 
-  h4 {
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    border-bottom: 1px solid $c-red;
-    font-family: $font-primary;
-  }
+    h4 {
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      border-bottom: 1px solid $c-red;
+      font-family: $font-primary;
+    }
 
-  h3 {
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    border-bottom: 1px solid $c-red;
-    font-family: $font-primary;
-  }
-  h2 {
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    border-bottom: 1px solid $c-red;
-    font-family: $font-primary;
-  }
-  h1 {
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    border-bottom: 1px solid $c-red;
-    font-family: $font-primary;
+    h3 {
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      border-bottom: 1px solid $c-red;
+      font-family: $font-primary;
+    }
+    h2 {
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      border-bottom: 1px solid $c-red;
+      font-family: $font-primary;
+    }
+    h1 {
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      border-bottom: 1px solid $c-red;
+      font-family: $font-primary;
+    }
   }
 } // end of sheet
 

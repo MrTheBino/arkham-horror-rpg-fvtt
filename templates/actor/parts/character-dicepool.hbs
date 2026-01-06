@@ -1,18 +1,14 @@
 <div class="dicepool-display">
-<span class="dice-icon" data-action="clickedClearDicePool" title="Clear" ><i class="fa-regular fa-calendar-xmark"></i></span>
-{{#each system.dicepoolPrepared as |die|}}
-{{#if die.isHorrorDice}}
-<span class="dice-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool"
-    data-die-index="{{die.index}}"><img src="systems/arkham-horror-rpg-fvtt/assets/icons/icon-horror.svg"
-        alt="Horror Die" /></span>
-{{else}}
-<span class="dice-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool"
-    data-die-index="{{die.index}}"><img src="systems/arkham-horror-rpg-fvtt/assets/icons/icon-dice-d6.svg"
-        alt="Regular Die" /></span>
-{{/if}}
-{{/each}}
+    <span class="dice-icon" data-action="clickedClearDicePool" title="Clear" ><i class="fa-regular fa-calendar-xmark"></i></span>
+    {{#each system.dicepoolPrepared as |die|}}
+        {{#if die.isHorrorDice}}
+        <span class="dice-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool"
+            data-die-index="{{die.index}}"><img src="systems/arkham-horror-rpg-fvtt/assets/icons/icon-horror.svg"
+                alt="Horror Die" /></span>
+        {{else}}
+        <span class="dice-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool"
+            data-die-index="{{die.index}}"><img src="systems/arkham-horror-rpg-fvtt/assets/icons/icon-dice-d6.svg"
+                alt="Regular Die" /></span>
+        {{/if}}
+    {{/each}}
 </div>
-
-
-
-{{!-- Example with 6 dice in the pool and max of 6 --}}

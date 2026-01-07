@@ -1,5 +1,5 @@
 <div class="dicepool-display">
-    <span class="dice-icon" data-action="clickedClearDicePool" title="Clear" ><i class="fa-regular fa-calendar-xmark"></i></span>
+    <span class="dice-action-icon" data-action="clickedClearDicePool" title="Clear" ><i class="fa-solid fa-x"></i></span>
     {{#each system.dicepoolPrepared as |die|}}
         {{#if die.isHorrorDice}}
         <span class="dice-icon dicepool-dice color-d6 {{#if die.used}}used{{/if}}" data-action="clickedDicePool"
@@ -11,4 +11,5 @@
                 alt="Regular Die" /></span>
         {{/if}}
     {{/each}}
+    <span class="dice-action-icon" data-action="clickedRefreshDicePool" title="Refresh" ><i class="fa-solid fa-arrow-rotate-right"></i></span>
 </div>

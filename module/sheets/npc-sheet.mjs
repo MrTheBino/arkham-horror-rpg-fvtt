@@ -23,7 +23,8 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
             deleteItem: this.#handleDeleteItem,
             toggleFoldableContent: this.#handleToggleFoldableContent,
             clickSkill: this.#handleSkillClicked,
-            clickWeaponReload: this.#handleWeaponReload
+            clickWeaponReload: this.#handleWeaponReload,
+            clickedRefreshDicePool: this.#handleClickedRefreshDicePool
         },
         form: {
             submitOnChange: true
@@ -186,7 +187,7 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         event.preventDefault();
         const element = event.currentTarget;
         const dieIndex = target.dataset.dieIndex;
-        console.log(dieIndex);
+        
         let newValue = dieIndex;
         if (newValue < 0) newValue = 0;
         this.actor.update({ 'system.dicepool.value': newValue });
@@ -262,13 +263,12 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
 
     static async #handleSkillClicked(event, target) {
         event.preventDefault();
-        const skillKey = target.dataset.skillKey;
-        console.log(`Skill clicked: ${skillKey}`);
+        const skillKey = target.dataset.skillKey;        
 
         let skillCurrent = this.actor.system.skills[skillKey].current;
         let skillMax = this.actor.system.skills[skillKey].max;
         let currentDicePool = this.actor.system.dicepool.value;
-        console.log(`Current Skill: ${skillCurrent}, Max Skill: ${skillMax}, Current Dice Pool: ${currentDicePool}`);
+
         DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool }).render(true);
     }
 
@@ -298,5 +298,11 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         } else {
             item.update({ [ev.target.dataset.itemStat]: ev.target.value });
         }
+    }
+
+    static async #handleClickedRefreshDicePool(event, target) {
+        let oldValue = this.actor.system.dicepool.value;
+        let newValue = this.actor.system.dicepool.max - this.actor.system.damage;
+        await this.actor.update({ 'system.dicepool.value': newValue });
     }
 }

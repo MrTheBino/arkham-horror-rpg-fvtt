@@ -1,8 +1,10 @@
 <form class="roll-dialog-container scrollable">
     <div class="form-group">
         <label for="dicepool">Dice Pool</label>
-        <input type="number" id="dicepool" name="diceToUse" value="{{diceToUse}}" min="0"> / 
-        <input type="number" name="currentDicePool" value="{{currentDicePool}}" min="0" readonly>
+        <div class="flexrow">
+            <input type="number" id="dicepool" name="diceToUse" value="{{diceToUse}}" min="0"> / 
+            <input type="number" name="currentDicePool" value="{{currentDicePool}}" min="0" readonly>
+        </div>
     </div>
     <div class="form-group">
         <label for="skill-key">Skill</label>
@@ -20,10 +22,24 @@
         <label for="penalty">Penalty</label>
         <input type="number" id="penalty" name="penalty" value="{{penalty}}" min="0">
     </div>
+    <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" name="difficulty">
+            <option value="1">Normal (1)</option>
+            <option value="2">Difficult (2)</option>
+            <option value="3">Very Difficult (3)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="modifier">Advantage</label>
+        <select id="modifier" name="advantageModifier">
+            <option value="0">None</option>
+            <option value="1">Advantage</option>
+            <option value="2">Disadvantage</option>
+            <option value="3">Adv + Disadvantage</option>
+        </select>
+    </div>
     <footer class="dialog-footer">
-        <button type="button" class="roll-button" data-action="clickedRoll">Roll</button>
-        <button type="button" class="roll-button" data-action="clickedRollAdvantage">Advantage</button>
-        <button type="button" class="roll-button" data-action="clickedRollDisadvantage">Disadvantage</button>
-        <button type="button" class="roll-button" data-action="clickedRollAdvDisadvantage">Adv + Disadvantage</button>
+        <button type="button" class="roll-button" data-action="clickedRoll"><i class="fa-solid fa-dice"></i> Roll</button>
     </footer>
 </form>

@@ -4,6 +4,9 @@
     </div>
     <div class="roll-result">
         <p>{{skillUsed}} - Success On: {{successOn}}+</p>
+        <p>Successes Needed: {{successesNeeded}}</p>
+        <p>Bonus Dice: {{bonusDice}}</p>
+        <p>Advantage/Disadvantage: {{#if rollWithAdvantage}}Advantage{{else if rollWithDisadvantage}}Disadvantage{{else}}None{{/if}}</p>
         <p>Dice Pool: {{oldDicePoolValue}} reduced to {{newDicePoolValue}}</p>
     </div>
     <div class="roll-result">
@@ -26,5 +29,12 @@
         <p>
             Successes: {{successCount}} Failures: {{failureCount}} Trauma: {{horrorFailureCount}}
         </p>
+    </div>
+    <div class="roll-result">
+        {{#if isSuccess}}
+        <p class="success-text">The roll was a SUCCESS!</p>
+        {{else}}
+        <p class="failure-text">The roll was a FAILURE!</p>
+        {{/if}}
     </div>
 </form>

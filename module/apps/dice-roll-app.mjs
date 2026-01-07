@@ -31,13 +31,10 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         },
         position: {
             width: 400,
-            height: 550
+            height: 450
         },
         actions: {
-            clickedRoll: this.#handleClickedRoll,
-            clickedRollAdvantage: this.#handleClickedRollAdvantage,
-            clickedRollDisadvantage: this.#handleClickedRollDisadvantage,
-            clickedRollAdvDisadvantage: this.#handleClickedRollAdvDisadvantage
+            clickedRoll: this.#handleClickedRoll
         },
     };
 
@@ -114,6 +111,25 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         let diceToUse = parseInt(target.form.diceToUse.value);
         let penalty = parseInt(target.form.penalty.value) || 0;
         let bonusDice = parseInt(target.form.bonus_dice.value) || 0;
+        let modifierAdvantage = parseInt(target.form.advantageModifier.value) || 0;
+        let successesNeeded = parseInt(target.form.difficulty.value) || 0;
+
+        if(modifierAdvantage === 1){
+            this .rollWithAdvantage = true;
+            this.rollWithDisadvantage = false;
+        }
+        else if(modifierAdvantage === 2){
+            this.rollWithDisadvantage = true;
+            this.rollWithAdvantage = false;
+        }
+        else if(modifierAdvantage === 3){handleClickedRollAdvantage
+            this.rollWithDisadvantage = true;
+            this.rollWithAdvantage = true;
+        }
+        else if(modifierAdvantage === 0){
+            this.rollWithAdvantage = false;
+            this.rollWithDisadvantage = false;
+        }
 
         let numHorrorDice = this.actor.system.horror;
         let numHorrorToUse = 0;
@@ -198,14 +214,38 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
             diceRollResults.splice(maxIndex, 1);
         }
 
-        // count all results that are >= successOn
-        let successCount = diceRollResults.filter(result => result.result >= successOn).length;
+        // count all results that are >= 6
+        let successCount = diceRollResults.filter(result => result.result >= 6).length;
         
 
         // count all failures (1s)
         let failureCount = diceRollResults.filter(result => result.result === 1 && !result.isHorror).length;
         // count horror failures (1s)
         let horrorFailureCount = diceRollResults.filter(result => result.result === 1 && result.isHorror).length;
+
+        // copy all 6 and 1 results to finalDiceRollResults
+        let finalDiceRollResults = diceRollResults.filter(result => result.result === 1 || result.result === 6);
+
+        // remove all ones and 6 from the diceRollResults
+        let tmpDiceRollResults = diceRollResults.filter(result => result.result !== 1 && result.result !== 6);
+
+        // decrease tmpDiceRollResults entry result by penality amount
+        tmpDiceRollResults = tmpDiceRollResults.map(result => {
+            let newResult = result.result - penalty;
+            return { ...result, result: newResult };
+        });
+
+        // copy all tmpDiceRollResults to finalDiceRollResults
+        finalDiceRollResults = finalDiceRollResults.concat(tmpDiceRollResults);
+        
+        // we check the success on the modifier dice now
+        successCount += tmpDiceRollResults.filter(result => result.result >= successOn).length;
+
+
+        let isSuccess = false;
+        if(successCount >= successesNeeded){
+            isSuccess = true;
+        }
 
         let diceRollHTML = await diceRoll.render();
 
@@ -219,7 +259,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
             horrorDiceRollHTML: horrorDiceRollHTML,
             successOn: successOn,
             diceToUse: diceToUse,
-            results: diceRollResults,
+            results: finalDiceRollResults,
             successCount: successCount,
             failureCount: failureCount,
             skillUsed: game.i18n.localize(`ARKHAM_HORROR.SKILL.${this.skillKey}`), // localized key here
@@ -227,6 +267,12 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
             oldDicePoolValue: oldDicePoolValue,
             horrorFailureCount: horrorFailureCount,
             horrorDiceToRoll: horrorDiceToRoll,
+            isSuccess: isSuccess,
+            penalty: penalty,
+            bonusDice: bonusDice,
+            successesNeeded: successesNeeded,
+            rollWithAdvantage: this.rollWithAdvantage,
+            rollWithDisadvantage: this.rollWithDisadvantage,
             horrorDiceUsed: horrorDiceToRoll > 0 ? true : false
         };
 
@@ -240,25 +286,5 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         });
 
         this.close();
-    }
-
-    static async #handleClickedRollAdvantage(event,target){
-        this.rollWithAdvantage = true;
-        this.rollWithDisadvantage = false;
-        event.preventDefault();
-        this.clickedRollCallback(event,target);
-    }
-
-    static async #handleClickedRollDisadvantage(event,target){
-        this.rollWithDisadvantage = true;
-        this.rollWithAdvantage = false;
-        event.preventDefault();
-        this.clickedRollCallback(event,target);
-    }
-    static async #handleClickedRollAdvDisadvantage(event,target){
-        this.rollWithAdvantage = true;
-        this.rollWithDisadvantage = true;
-        event.preventDefault();
-        this.clickedRollCallback(event,target);
     }
 }

@@ -146,7 +146,7 @@ fieldset {
   }
 }
 
-.sheet {
+.sheet.actor {
   .window-content {
     h5 {
       color: $c-light-red;
@@ -255,4 +255,19 @@ nav.tabs [data-group="sheet"] {
 
 .form-group-rich-editor {
   height: 100%;
+}
+
+.roll-button {
+  margin: 5px;
+  margin-top: 25px;
+  font-family: $font-primary;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.dice-action-icon{
+  font-size: 1.25em;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
 }

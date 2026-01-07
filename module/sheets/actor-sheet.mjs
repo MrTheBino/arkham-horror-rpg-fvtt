@@ -22,7 +22,8 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             deleteItem: this.#handleDeleteItem,
             toggleFoldableContent: this.#handleToggleFoldableContent,
             clickSkill: this.#handleSkillClicked,
-            clickWeaponReload: this.#handleWeaponReload
+            clickWeaponReload: this.#handleWeaponReload,
+            clickedRefreshDicePool: this.#handleClickedRefreshDicePool
         },
         form: {
             submitOnChange: true
@@ -51,7 +52,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             id: 'tabs',
             template: 'templates/generic/tab-navigation.hbs'
         },
-       character: {
+        character: {
             id: 'character',
             template: 'systems/arkham-horror-rpg-fvtt/templates/actor/parts/character-main.hbs',
             scrollable: ['']
@@ -95,7 +96,6 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
     }
 
     async _onDropItem(event, data) {
-        console.log(data);
 
         // Standardverhalten beibehalten
         return super._onDropItem(event, data);
@@ -229,7 +229,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         event.preventDefault();
         const element = event.currentTarget;
         const dieIndex = target.dataset.dieIndex;
-        console.log(dieIndex);
+
         let newValue = dieIndex;
         if (newValue < 0) newValue = 0;
         this.actor.update({ 'system.dicepool.value': newValue });
@@ -306,12 +306,10 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
     static async #handleSkillClicked(event, target) {
         event.preventDefault();
         const skillKey = target.dataset.skillKey;
-        console.log(`Skill clicked: ${skillKey}`);
 
         let skillCurrent = this.actor.system.skills[skillKey].current;
         let skillMax = this.actor.system.skills[skillKey].max;
         let currentDicePool = this.actor.system.dicepool.value;
-        console.log(`Current Skill: ${skillCurrent}, Max Skill: ${skillMax}, Current Dice Pool: ${currentDicePool}`);
         DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool }).render(true);
     }
 
@@ -331,9 +329,31 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
                 const currentMoney = this.actor.system.mundaneResources.money;
                 const newMoney = currentMoney - reloadCost;
                 await this.actor.update({ 'system.mundaneResources.money': newMoney });
-            } 
+            }
         } else {
             console.error(`Item with ID ${itemId} not found on actor.`);
         }
+    }
+
+    static async #handleClickedRefreshDicePool(event, target) {
+        let oldValue = this.actor.system.dicepool.value;
+        let newValue = this.actor.system.dicepool.max - this.actor.system.damage;
+        await this.actor.update({ 'system.dicepool.value': newValue });
+        const chatVars = {
+            label: 'Dicepool Refresh',
+            actorName: this.actor.name,
+            oldDicePoolValue: oldValue,
+            newDicePoolValue: newValue
+        };
+
+        const html = await foundry.applications.handlebars.renderTemplate(
+            "systems/arkham-horror-rpg-fvtt/templates/chat/dicepool-reset.hbs",
+            chatVars
+        );
+        ChatMessage.create({
+            content: html,
+            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        });
+
     }
 }

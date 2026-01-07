@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 13.0.5 preview
+- improved dice rolling dialog
+- first implementation of penalty, adv/disadvantage, difficulty handling in dice handling
+- improved styled
+- refreshing dice pool per click on characters and npcs
+- bug fixes
+
 ## 13.0.4 preview
 - bug fixes
 

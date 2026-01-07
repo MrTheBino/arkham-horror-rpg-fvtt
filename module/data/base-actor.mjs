@@ -73,8 +73,6 @@ export default class ArkhamHorrorActorBase extends ArkhamHorrorDataModel {
 
     for (let i = 1; i <= presentDicePoolMax; i++) {
       let isHorrorDice = (i <= this.horror);
-      //console.log('isHorrorDice:', isHorrorDice);
-      //console.log('i:', i, 'presentDicePoolMax:', presentDicePoolMax, 'horror:', this.horror);
       this.dicepoolPrepared.push({ index: i, max: presentDicePoolMax, used: i > this.dicepool.value,isHorrorDice:isHorrorDice });
     }
   }

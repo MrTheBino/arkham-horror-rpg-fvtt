@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 13.0.6 ALPHA
+- fixed important styling issues
+  
 ## 13.0.5 preview
 - improved dice rolling dialog
 - first implementation of penalty, adv/disadvantage, difficulty handling in dice handling

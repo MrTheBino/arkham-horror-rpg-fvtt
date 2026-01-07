@@ -459,25 +459,25 @@ form > nav > a.item.active {
 .system-arkham-horror-rpg-fvtt .archetype-entry label {
   margin-right: 5px;
 }
-.system-arkham-horror-rpg-fvtt .form-group {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group {
   display: flex;
   flex-direction: row;
   align-items: start;
   margin-bottom: 5px;
 }
-.system-arkham-horror-rpg-fvtt .form-group label {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group label {
   margin-right: 5px;
   flex-basis: 50%;
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.1em;
 }
-.system-arkham-horror-rpg-fvtt .form-group-editor label {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group-editor label {
   margin-right: 5px;
   flex-basis: 50%;
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.1em;
 }
-.system-arkham-horror-rpg-fvtt fieldset legend {
+.system-arkham-horror-rpg-fvtt .sheet.actor fieldset legend {
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.2em;
   color: #2B100A;
@@ -520,13 +520,13 @@ form > nav > a.item.active {
 .system-arkham-horror-rpg-fvtt .foldable-content.collapsed {
   display: block;
 }
-.system-arkham-horror-rpg-fvtt nav.tabs [data-group=sheet] {
+.system-arkham-horror-rpg-fvtt .sheet.actor nav.tabs [data-group=sheet] {
   color: #2B100A;
   font-weight: bold;
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.1em;
 }
-.system-arkham-horror-rpg-fvtt nav.tabs [data-group=sheet] .active {
+.system-arkham-horror-rpg-fvtt .sheet.actor nav.tabs [data-group=sheet] .active {
   color: black;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
 }

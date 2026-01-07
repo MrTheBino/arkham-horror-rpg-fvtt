@@ -114,39 +114,39 @@
   }
 }
 
-.form-group {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  margin-bottom: 5px;
-  label {
-    margin-right: 5px;
-    flex-basis: 50%;
-    font-family: $font-primary;
-    font-size: 1.1em;
-  }
-}
-
-.form-group-editor {
-  label {
-    margin-right: 5px;
-    flex-basis: 50%;
-    font-family: $font-primary;
-    font-size: 1.1em;
-  }
-}
-
-fieldset {
-  legend {
-    font-family: $font-primary;
-    font-size: 1.2em;
-    color: $c-light-red;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
-    text-transform: uppercase;
-  }
-}
-
 .sheet.actor {
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin-bottom: 5px;
+    label {
+      margin-right: 5px;
+      flex-basis: 50%;
+      font-family: $font-primary;
+      font-size: 1.1em;
+    }
+  }
+
+  .form-group-editor {
+    label {
+      margin-right: 5px;
+      flex-basis: 50%;
+      font-family: $font-primary;
+      font-size: 1.1em;
+    }
+  }
+
+  fieldset {
+    legend {
+      font-family: $font-primary;
+      font-size: 1.2em;
+      color: $c-light-red;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+      text-transform: uppercase;
+    }
+  }
+
   .window-content {
     h5 {
       color: $c-light-red;
@@ -190,18 +190,19 @@ fieldset {
   }
 }
 
-nav.tabs [data-group="sheet"] {
-  color: $c-light-red;
-  font-weight: bold;
-  font-family: $font-primary;
-  font-size: 1.1em;
+.sheet.actor {
+  nav.tabs [data-group="sheet"] {
+    color: $c-light-red;
+    font-weight: bold;
+    font-family: $font-primary;
+    font-size: 1.1em;
 
-  .active {
-    color: black;
-    text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    .active {
+      color: black;
+      text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
+    }
   }
 }
-
 .skill {
   font-family: $font-primary;
   font-size: 1.4em;
@@ -265,7 +266,7 @@ nav.tabs [data-group="sheet"] {
   font-size: 1.2em;
 }
 
-.dice-action-icon{
+.dice-action-icon {
   font-size: 1.25em;
   margin-left: 5px;
   margin-right: 5px;

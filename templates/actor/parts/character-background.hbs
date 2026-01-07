@@ -16,14 +16,21 @@
     <input type="number" name="system.background.weeklySalary" id="weeklySalary" value="{{system.background.weeklySalary}}" data-dtype="Number">
 </div>
 <div class="form-group-editor">
-    <label for="firstSupernaturalEncounter">First Supernatural Encounter</label>
+    <h5>Biography</h5>
+    <prose-mirror name="system.biography" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.biography}}">
+            {{{biographyHTML}}}
+        </prose-mirror>
+</div>
+<div class="form-group-editor">
+    <h5>First Supernatural Encounter</h5>
     <prose-mirror name="system.background.firstSupernaturalEncounter" button="true" editable="{{editable}}" toggled="false"
             value="{{system.background.firstSupernaturalEncounter}}">
             {{{firstSupernaturalEncounterHTML}}}
         </prose-mirror>
 </div>
 <div class="form-group-editor">
-    <label for="notableEnemies">Notable Enemies</label>
+    <h5>Notable Enemies</h5>
     <prose-mirror name="system.background.notableEnemies" button="true" editable="{{editable}}" toggled="false"
             value="{{system.background.notableEnemies}}">
             {{{notableEnemiesHTML}}}

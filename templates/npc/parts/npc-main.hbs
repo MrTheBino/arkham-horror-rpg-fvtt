@@ -22,6 +22,30 @@
         {{> systems/arkham-horror-rpg-fvtt/templates/npc/parts/_skill.hbs skillKey='lore'
         skillData=system.skills.lore label="LORE"}}
     </div>
+    <fieldset>
+        <legend>INJURIES &amp; TRAUMA</legend>
+        {{#each injuries as |injury|}}
+        <div class="injury-entry">
+            <div>
+                <strong class="clickable" data-action="toggleFoldableContent" data-fc-id="injury{{injury._id}}">
+                    {{#if (eq injury.type 'trauma')}}[TRAUMA] {{/if}}
+                    {{#if (eq injury.type 'injury')}}[INJURY] {{/if}}
+                    {{injury.name}}</strong>
+                <a class='item-control item-edit' data-action="editItem" title='{{localize "DOCUMENT.Update" type='
+                    injury'}}' data-item-id='{{injury._id}}'>
+                    <i class='fas fa-edit'></i>
+                </a>
+                <a class='item-control item-delete' data-action="deleteItem" title='{{localize "DOCUMENT.Delete" type='
+                    injury'}}' data-item-id='{{injury._id}}'>
+                    <i class='fas fa-trash'></i>
+                </a>
+            </div>
+            <div class="foldable-content" data-fc-id="injury{{injury._id}}">
+                {{{injury.system.description}}}
+            </div>
+        </div>
+        {{/each}}
+    </fieldset>
     <div class="resource-group">
         <!-- Weapons -->
         <h5 class="quick-label">Weapons</h5>
@@ -42,38 +66,40 @@
             {{#each weapons as |item id|}}
             <li class='item ' data-item-id='{{item._id}}'>
                 <div class="flexrow">
-                <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="weapon{{item._id}}">
-                    <div class='item-image'>
-                        <a class='rollable' data-roll-type='item'>
-                            <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                        data-fc-id="weapon{{item._id}}">
+                        <div class='item-image'>
+                            <a class='rollable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-prop'>{{localize (concat "ARKHAM_HORROR.SKILL." item.system.skill)}}</div>
+                    <div class='item-prop'>{{item.system.damage}}</div>
+                    <div class='item-prop'>{{item.system.injuryRating}}</div>
+                    <div class='item-prop'><input type="text" value="{{item.system.ammunition.current}}"
+                            data-item-stat="system.ammunition.current" class="item-editable-stat ammo_input"> /
+                        {{item.system.ammunition.max}} <span class="weapon-reload-icon" data-item-id='{{item._id}}'
+                            data-action="clickWeaponReload" title="{reload"><i
+                                class="fa-solid fa-rotate clickable"></i></span></div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type=' Item'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
+                            <i class='fas fa-trash'></i>
                         </a>
                     </div>
-                    <span>{{item.name}}</span>
-                </div>
-                <div class='item-prop'>{{localize (concat "ARKHAM_HORROR.SKILL." item.system.skill)}}</div>
-                <div class='item-prop'>{{item.system.damage}}</div>
-                <div class='item-prop'>{{item.system.injuryRating}}</div>
-                <div class='item-prop'><input type="text" value="{{item.system.ammunition.current}}" data-item-stat="system.ammunition.current"
-                            class="item-editable-stat ammo_input"> / {{item.system.ammunition.max}} <span class="weapon-reload-icon" data-item-id='{{item._id}}' data-action="clickWeaponReload"
-                            title="{reload"><i
-                                class="fa-solid fa-rotate clickable"></i></span></div>
-                <div class='item-controls'>
-                    <a class='item-control item-edit' data-action="editItem" title='{{localize "DOCUMENT.Update" type='
-                        Item'}}'>
-                        <i class='fas fa-edit'></i>
-                    </a>
-                    <a class='item-control item-delete' data-action="deleteItem"
-                        title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
-                        <i class='fas fa-trash'></i>
-                    </a>
-                </div>
                 </div>
                 <div class="foldable-content" data-fc-id="weapon{{item._id}}">
                     <div>
                         <strong>Special Rules:</strong>
                         {{{item.system.specialRules}}}
                     </div>
-                </div>  
+                </div>
             </li>
             {{/each}}
         </ol>

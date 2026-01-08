@@ -179,4 +179,62 @@
             {{/each}}
         </ol>
     </div>
+    <div class="resource-group">
+        <!-- Favors -->
+        <h5 class="quick-label">Favors</h5>
+        <ol class='items-list'>
+            <li class='item flexrow items-header'>
+                <div class='item-name'>{{localize 'Name'}}</div>
+                <div class='item-prop'>XP</div>
+                <div class='item-controls'>
+                    <a class='item-control item-create' data-action="createItem"
+                        title='{{localize "DOCUMENT.Create" type=' Favor'}}' data-type='favor'>
+                        <i class='fas fa-plus'></i>
+                    </a>
+                </div>
+            </li>
+            {{#each favors as |item id|}}
+            <li class='item' data-item-id='{{item._id}}'>
+                <div class="flexrow">
+                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                        data-fc-id="usefulItem{{item._id}}">
+                        <div class='item-image'>
+                            <a class='clickable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-prop'>{{item.system.xp}}</div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type=' Item'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
+                            <i class='fas fa-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="foldable-content" data-fc-id="usefulItem{{item._id}}">
+                    <div class="grid grid-3col">
+                        <div>
+                            <strong>Benefit</strong>
+                            {{{item.system.benefit}}}
+                        </div>
+                        <div>
+                            <strong>Declining</strong>
+                            {{{item.system.decliningText}}}
+                        </div>
+                        <div>
+                            <strong>Losing</strong>
+                            {{{item.system.losingText}}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
 </section>

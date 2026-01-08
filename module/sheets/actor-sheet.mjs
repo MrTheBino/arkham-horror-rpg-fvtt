@@ -169,6 +169,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         const tomes = [];
         const relics = [];
         const injuries = [];
+        const favors = [];
 
         let inventory = this.options.document.items;
         for (let i of inventory) {
@@ -196,12 +197,15 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             else if (i.type === 'injury' || i.type === 'trauma') {
                 injuries.push(i);
             }
+            else if (i.type === 'favor') {
+                favors.push(i);
+            }
         }
 
         // sort knacks by tier
         knacks.sort((a, b) => a.system.tier - b.system.tier);
 
-        return { knacks: knacks, personalityTrait: personalityTrait, weapons: weapons, protectiveEquipments: protectiveEquipments, usefulItems: usefulItems, tomes: tomes, relics: relics, injuries: injuries };
+        return { knacks: knacks, personalityTrait: personalityTrait, weapons: weapons, protectiveEquipments: protectiveEquipments, usefulItems: usefulItems, tomes: tomes, relics: relics, injuries: injuries,favors: favors  };
     }
 
     /** @inheritDoc */

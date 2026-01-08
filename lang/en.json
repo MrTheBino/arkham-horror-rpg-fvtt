@@ -89,6 +89,16 @@
     },
     "UsefulItem":{
       "uses": "Uses"
+    },
+    "PersonalityTrait": {
+      "positive": "Positive Trait",
+      "negative": "Negative Trait"
+    },
+    "Favor": {
+      "xp": "XP Cost",
+      "benefit": "Benefit",
+      "decliningText": "Declining",
+      "losingText": "Losing"
     }
   },
   "TYPES": {
@@ -108,7 +118,8 @@
       "tome": "Tome",
       "relic": "Relic",
       "injury": "Injury",
-      "trauma": "Trauma"
+      "trauma": "Trauma",
+      "favor": "Favor"
     }
   }
 }

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 13.0.8 ALPHA
+- added dice pool & damage numbers below actor tokens
+- added settings for dice pool & damage overlay in system settings
+- added injuries & trauma to npc
+- added favor item type
+- styling fixes
+  
 ## 13.0.7 ALPHA
 - fixed important styling issues
 - added knack creation button on actor sheet

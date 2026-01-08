@@ -114,7 +114,7 @@
   }
 }
 
-.sheet.actor {
+.sheet.actor,.sheet.item {
   .form-group {
     display: flex;
     flex-direction: row;
@@ -185,12 +185,19 @@
 
 .foldable-content {
   display: none;
+  background: rgba(0,0,0,0.05);
+  border-radius: 5px;
+  padding: 5px;
   &.collapsed {
     display: block;
   }
 }
 
 .sheet.actor,.sheet.item {
+  .resource-group{
+    margin-top: 10px;
+  }
+  
   nav.tabs [data-group="sheet"] {
     color: $c-light-red;
     font-weight: bold;

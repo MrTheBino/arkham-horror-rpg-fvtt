@@ -1,0 +1,29 @@
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form"
+    data-tab="{{tabs.form.id}}" data-group="{{tabs.form.group}}">
+
+<div class="form-group">
+        <label for="xp">{{localize "ITEM.Favor.xp"}}</label>
+        <input type="number" id="xp" name="system.xp" value="{{system.xp}}" min="0"/>
+    </div>
+<div class="form-group-rich-editor">
+        <h5>{{localize "ITEM.Favor.benefit"}}</h5>
+        <prose-mirror name="system.benefit" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.benefit}}">
+            {{{benefitHTML}}}
+        </prose-mirror>
+    </div>
+<div class="form-group-rich-editor">
+        <h5>{{localize "ITEM.Favor.decliningText"}}</h5>
+        <prose-mirror name="system.decliningText" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.decliningText}}">
+            {{{decliningTextHTML}}}
+        </prose-mirror>
+    </div>
+<div class="form-group-rich-editor">
+        <h5>{{localize "ITEM.Favor.losingText"}}</h5>
+        <prose-mirror name="system.losingText" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.losingText}}">
+            {{{losingTextHTML}}}
+        </prose-mirror>
+    </div>
+</section>

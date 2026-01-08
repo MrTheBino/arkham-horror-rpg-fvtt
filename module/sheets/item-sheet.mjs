@@ -1,6 +1,7 @@
 const { ItemSheetV2 } = foundry.applications.sheets
 const { HandlebarsApplicationMixin } = foundry.applications.api
 const { TextEditor, DragDrop } = foundry.applications.ux
+import { enrichHTML } from "../util/util.mjs"
 
 export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     #dragDrop // Private field to hold dragDrop handlers
@@ -101,50 +102,35 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
         // Adding a pointer to CONFIG.SHADOWCITY
         context.config = CONFIG.SHADOWCITY;
 
-        context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-            this.document.system.description,
-            {
-                // Whether to show secret blocks in the finished html
-                secrets: this.document.isOwner,
-                // Necessary in v11, can be removed in v12
-                async: true,
-                // Data to fill in for inline rolls
-                rollData: this.document.getRollData(),
-                // Relative UUID resolution
-                relativeTo: this.document,
-            }
-        );
+        context.descriptionHTML = await enrichHTML('system.description',this.document);
 
         if (actorData.system.specialRules) {
-            context.specialRulesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                this.document.system.specialRules,
-                {
-                    // Whether to show secret blocks in the finished html
-                    secrets: this.document.isOwner,
-                    // Necessary in v11, can be removed in v12
-                    async: true,
-                    // Data to fill in for inline rolls
-                    rollData: this.document.getRollData(),
-                    // Relative UUID resolution
-                    relativeTo: this.document,
-                }
-            );
+            context.specialRulesHTML = await enrichHTML('system.specialRules',this.document);
         }
 
         if(actorData.system.defensiveBenefit){
-             context.defensiveBenefitHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                this.document.system.defensiveBenefit,
-                {
-                    // Whether to show secret blocks in the finished html
-                    secrets: this.document.isOwner,
-                    // Necessary in v11, can be removed in v12
-                    async: true,
-                    // Data to fill in for inline rolls
-                    rollData: this.document.getRollData(),
-                    // Relative UUID resolution
-                    relativeTo: this.document,
-                }
-            );
+             context.defensiveBenefitHTML = await enrichHTML('system.defensiveBenefit',this.document);
+        }
+
+        if(actorData.system.negative){
+             context.negativeHTML = await enrichHTML('system.negative',this.document);
+        }
+
+        if(actorData.system.positive){
+             context.positiveHTML = await enrichHTML('system.positive',this.document);
+        }
+
+        if(actorData.system.positive){
+             context.positiveHTML = await enrichHTML('system.positive',this.document);
+        }
+        if(actorData.system.benefit){
+             context.benefitHTML = await enrichHTML('system.benefit',this.document);
+        }
+        if(actorData.system.decliningText){
+             context.decliningTextHTML = await enrichHTML('system.decliningText',this.document);
+        }
+        if(actorData.system.losingText){
+             context.losingTextHTML = await enrichHTML('system.losingText',this.document);
         }
         return context;
     }

@@ -47,6 +47,9 @@ export class ArkhamHorrorItem extends Item {
       case 'trauma':
         image = "systems/arkham-horror-rpg-fvtt/assets/icons/icon-trauma.svg";
         break;
+      case 'favor':
+        image = "systems/arkham-horror-rpg-fvtt/assets/icons/icon-favor.svg";
+        break;
     }
 
     if (image != null) {

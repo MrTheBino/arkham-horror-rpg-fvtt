@@ -3,6 +3,6 @@
     "types": ["character", "npc"]
   },
   "Item": {
-    "types": ["knack","personality_trait","weapon","protective_equipment","useful_item","tome","relic","injury","trauma"]
+    "types": ["knack","personality_trait","weapon","protective_equipment","useful_item","tome","relic","injury","trauma","favor"]
   }
 }

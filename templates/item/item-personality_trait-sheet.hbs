@@ -1,14 +1,19 @@
-<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form"
-    data-tab="{{tabs.form.id}}" data-group="{{tabs.form.group}}">
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form" data-tab="{{tabs.form.id}}"
+    data-group="{{tabs.form.group}}">
 
-<div class="form-group">
-    <label for="description">{{localize "ITEM.PersonalityTrait.positive"}}</label>
-    <textarea id="description" name="system.positive" cols="30" rows="10">{{system.positive}}</textarea>
-</div>
+    <div class="form-group-rich-editor">
+        <h4>{{localize "ITEM.PersonalityTrait.positive"}}</h4>
+        <prose-mirror name="system.positive" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.positive}}">
+            {{{positiveHTML}}}
+        </prose-mirror>
+    </div>
 
-<div class="form-group">
-    <label for="description">{{localize "ITEM.PersonalityTrait.negative"}}</label>
-    <textarea id="description" name="system.negative" cols="30" rows="10">{{system.negative}}</textarea>
-</div>
-
+    <div class="form-group-rich-editor">
+        <h4>{{localize "ITEM.PersonalityTrait.negative"}}</h4>
+        <prose-mirror name="system.negative" button="true" editable="{{editable}}" toggled="false"
+            value="{{system.negative}}">
+            {{{negativeHTML}}}
+        </prose-mirror>
+    </div>
 </section>

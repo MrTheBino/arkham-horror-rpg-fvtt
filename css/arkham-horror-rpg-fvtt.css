@@ -19,7 +19,7 @@
 
 .character .window-content {
   background: none;
-  background-image: url("../assets/images/sheet-background.webp");
+  background-image: url("../assets/images/sheet-background-v2.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -29,7 +29,7 @@
 
 .npc .window-content {
   background: none;
-  background-image: url("../assets/images/sheet-background.webp");
+  background-image: url("../assets/images/sheet-background-v2.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -39,7 +39,7 @@
 
 .item .window-content {
   background: none;
-  background-image: url("../assets/images/sheet-background.webp");
+  background-image: url("../assets/images/sheet-background-v2.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -49,7 +49,7 @@
 
 .dice-roll-app .window-content {
   background: none;
-  background-image: url("../assets/images/sheet-background.webp");
+  background-image: url("../assets/images/sheet-background-v2.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -459,56 +459,56 @@ form > nav > a.item.active {
 .system-arkham-horror-rpg-fvtt .archetype-entry label {
   margin-right: 5px;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .form-group {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group, .system-arkham-horror-rpg-fvtt .sheet.item .form-group {
   display: flex;
   flex-direction: row;
   align-items: start;
   margin-bottom: 5px;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .form-group label {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group label, .system-arkham-horror-rpg-fvtt .sheet.item .form-group label {
   margin-right: 5px;
   flex-basis: 50%;
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.1em;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .form-group-editor label {
+.system-arkham-horror-rpg-fvtt .sheet.actor .form-group-editor label, .system-arkham-horror-rpg-fvtt .sheet.item .form-group-editor label {
   margin-right: 5px;
   flex-basis: 50%;
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.1em;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor fieldset legend {
+.system-arkham-horror-rpg-fvtt .sheet.actor fieldset legend, .system-arkham-horror-rpg-fvtt .sheet.item fieldset legend {
   font-family: "MODESTO CONDENSED", sans-serif;
   font-size: 1.2em;
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   text-transform: uppercase;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h5 {
+.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h5, .system-arkham-horror-rpg-fvtt .sheet.item .window-content h5 {
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
   font-family: "MODESTO CONDENSED", sans-serif;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h4 {
+.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h4, .system-arkham-horror-rpg-fvtt .sheet.item .window-content h4 {
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
   font-family: "MODESTO CONDENSED", sans-serif;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h3 {
+.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h3, .system-arkham-horror-rpg-fvtt .sheet.item .window-content h3 {
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
   font-family: "MODESTO CONDENSED", sans-serif;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h2 {
+.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h2, .system-arkham-horror-rpg-fvtt .sheet.item .window-content h2 {
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
   font-family: "MODESTO CONDENSED", sans-serif;
 }
-.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h1 {
+.system-arkham-horror-rpg-fvtt .sheet.actor .window-content h1, .system-arkham-horror-rpg-fvtt .sheet.item .window-content h1 {
   color: #2B100A;
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
@@ -516,9 +516,15 @@ form > nav > a.item.active {
 }
 .system-arkham-horror-rpg-fvtt .foldable-content {
   display: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  padding: 5px;
 }
 .system-arkham-horror-rpg-fvtt .foldable-content.collapsed {
   display: block;
+}
+.system-arkham-horror-rpg-fvtt .sheet.actor .resource-group, .system-arkham-horror-rpg-fvtt .sheet.item .resource-group {
+  margin-top: 10px;
 }
 .system-arkham-horror-rpg-fvtt .sheet.actor nav.tabs [data-group=sheet], .system-arkham-horror-rpg-fvtt .sheet.item nav.tabs [data-group=sheet] {
   color: #2B100A;

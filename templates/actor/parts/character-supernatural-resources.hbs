@@ -1,6 +1,50 @@
 <section class="tab {{tabs.supernatural_resources.id}} {{tabs.supernatural_resources.cssClass}} scrollable" id="supernatural_resources" data-tab="{{tabs.supernatural_resources.id}}" data-group="{{tabs.supernatural_resources.group}}">
     <div class="resource-group">
         <!-- Tomes -->
+        <h5 class="quick-label">Spells</h5>
+        <ol class='items-list'>
+            <li class='item flexrow items-header'>
+                <div class='item-name'>{{localize 'Name'}}</div>
+                <div class='item-controls'>
+                    <a class='item-control item-create' data-action="createItem"
+                        title='{{localize "DOCUMENT.Create" type='spell'}}' data-type='spell'>
+                        <i class='fas fa-plus'></i>
+                    </a>
+                </div>
+            </li>
+            {{#each spells as |item id|}}
+            <li class='item' data-item-id='{{item._id}}'>
+                <div class="flexrow">
+                    <div class='item-name clickable' data-action="toggleFoldableContent" data-fc-id="spell{{item._id}}">
+                        <div class='item-image'>
+                            <a class='clickable' data-roll-type='item'>
+                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                            </a>
+                        </div>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class='item-controls'>
+                        <a class='item-control item-edit' data-action="editItem"
+                            title='{{localize "DOCUMENT.Update" type=' Item'}}'>
+                            <i class='fas fa-edit'></i>
+                        </a>
+                        <a class='item-control item-delete' data-action="deleteItem"
+                            title='{{localize "DOCUMENT.Delete" type=' Item'}}'>
+                            <i class='fas fa-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="foldable-content" data-fc-id="spell{{item._id}}">
+                    <div>
+                        {{{item.system.specialRules}}}
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+    <div class="resource-group">
+        <!-- Tomes -->
         <h5 class="quick-label">Tomes</h5>
         <ol class='items-list'>
             <li class='item flexrow items-header'>

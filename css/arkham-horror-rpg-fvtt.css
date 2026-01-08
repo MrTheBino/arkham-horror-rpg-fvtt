@@ -565,6 +565,7 @@ form > nav > a.item.active {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 5px;
+  color: black;
 }
 .system-arkham-horror-rpg-fvtt .foldable-content.collapsed {
   display: block;

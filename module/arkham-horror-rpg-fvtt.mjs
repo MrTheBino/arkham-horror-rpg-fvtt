@@ -59,7 +59,7 @@ Hooks.once('init', function () {
   CONFIG.Item.dataModels = {
     //item: models.ArkhamHorrorItem,
     //feature: models.ArkhamHorrorFeature,
-    //spell: models.ArkhamHorrorSpell,
+    spell: models.ArkhamHorrorSpell,
     knack: models.ArkhamHorrorKnack,
     personality_trait: models.ArkhamHorrorPersonalityTrait,
     weapon: models.ArkhamHorrorWeapon,

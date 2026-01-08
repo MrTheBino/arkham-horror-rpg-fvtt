@@ -502,7 +502,20 @@ form > nav > a.item.active {
   margin-right: 5px;
   flex-basis: 50%;
   font-family: "MODESTO CONDENSED", sans-serif;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  min-width: 120px;
+}
+.system-arkham-horror-rpg-fvtt .sheet.actor .header-form-group, .system-arkham-horror-rpg-fvtt .sheet.item .header-form-group, .system-arkham-horror-rpg-fvtt .roll-dialog-container .header-form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin-bottom: 5px;
+}
+.system-arkham-horror-rpg-fvtt .sheet.actor .header-form-group label, .system-arkham-horror-rpg-fvtt .sheet.item .header-form-group label, .system-arkham-horror-rpg-fvtt .roll-dialog-container .header-form-group label {
+  margin-right: 5px;
+  flex-basis: 50%;
+  font-family: "MODESTO CONDENSED", sans-serif;
+  font-size: 1.2em;
 }
 .system-arkham-horror-rpg-fvtt .sheet.actor .form-group-editor label, .system-arkham-horror-rpg-fvtt .sheet.item .form-group-editor label, .system-arkham-horror-rpg-fvtt .roll-dialog-container .form-group-editor label {
   margin-right: 5px;

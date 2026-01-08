@@ -17,6 +17,15 @@ export function setupConfiguration() {
         default: true
     });
 
+    game.settings.register("arkham-horror-rpg-fvtt", "characterLoadCapacity", {
+        name: "Character Load Capacity",
+        hint: "Automatic Load Capacity calculation",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
+    });
+
     game.settings.register("arkham-horror-rpg-fvtt", "characterInjuryTable", {
         name: "Character Injury Table",
         hint: "Used for rolling injuries",

@@ -124,7 +124,21 @@
       margin-right: 5px;
       flex-basis: 50%;
       font-family: $font-primary;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      min-width: 120px;
+    }
+  }
+
+  .header-form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin-bottom: 5px;
+    label {
+      margin-right: 5px;
+      flex-basis: 50%;
+      font-family: $font-primary;
+      font-size: 1.2em;
     }
   }
 

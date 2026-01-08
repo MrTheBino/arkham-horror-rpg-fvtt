@@ -2,6 +2,10 @@
     data-group="{{tabs.form.group}}">
 
     <div class="form-group">
+        <label for="weight">{{localize "ITEM.Weapon.weight"}}</label>
+        <input type="number" id="weight" name="system.weight" value="{{system.weight}}" min="0"/>
+    </div>
+    <div class="form-group">
         <label for="rarity">{{localize "ITEM.Tome.rarity"}}</label>
         Common<input type="checkbox" id="rarity" name="system.rarity.common" {{#if system.rarity.common}}checked{{/if}} />
         Uncommon<input type="checkbox" id="rarity" name="system.rarity.uncommon" {{#if system.rarity.uncommon}}checked{{/if}} />

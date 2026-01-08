@@ -1,18 +1,21 @@
-<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form"
-    data-tab="{{tabs.form.id}}" data-group="{{tabs.form.group}}">
-
-<div class="form-group">
-        <label for="cost">{{localize "ITEM.Weapon.cost"}}</label>
-        <input type="number" id="cost" name="system.cost" value="{{system.cost}}" min="0"/>
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form" data-tab="{{tabs.form.id}}"
+    data-group="{{tabs.form.group}}">
+    <div class="form-group">
+        <label for="weight">{{localize "ITEM.Weapon.weight"}}</label>
+        <input type="number" id="weight" name="system.weight" value="{{system.weight}}" min="0" />
     </div>
-<div class="form-group-rich-editor">
+    <div class="form-group">
+        <label for="cost">{{localize "ITEM.Weapon.cost"}}</label>
+        <input type="number" id="cost" name="system.cost" value="{{system.cost}}" min="0" />
+    </div>
+    <div class="form-group-rich-editor">
         <label for="defensiveBenefit">{{localize "ITEM.ProtectiveEquipment.defensiveBenefit"}}</label>
         <prose-mirror name="system.defensiveBenefit" button="true" editable="{{editable}}" toggled="false"
             value="{{system.defensiveBenefit}}">
             {{{defensiveBenefitHTML}}}
         </prose-mirror>
     </div>
-<div class="form-group-rich-editor">
+    <div class="form-group-rich-editor">
         <label for="specialRules">{{localize "ITEM.ProtectiveEquipment.specialRules"}}</label>
         <prose-mirror name="system.specialRules" button="true" editable="{{editable}}" toggled="false"
             value="{{system.specialRules}}">

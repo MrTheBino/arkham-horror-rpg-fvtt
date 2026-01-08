@@ -75,7 +75,8 @@
       "cost": "Cost",
       "specialRules": "Special Rules",
       "ammunitionMax": "Ammunition Max",
-      "reloadCost": "Reload Cost"
+      "reloadCost": "Reload Cost",
+      "weight": "Weight"
     },
     "ProtectiveEquipment": {
       "defensiveBenefit": "Defensive Benefit",
@@ -88,7 +89,8 @@
       "rarity": "Rarity"
     },
     "UsefulItem":{
-      "uses": "Uses"
+      "uses": "Uses",
+      "weight": "Weight"
     },
     "PersonalityTrait": {
       "positive": "Positive Trait",

@@ -2,6 +2,10 @@
     data-tab="{{tabs.form.id}}" data-group="{{tabs.form.group}}">
 
     <div class="form-group">
+        <label for="weight">{{localize "ITEM.Weapon.weight"}}</label>
+        <input type="number" id="weight" name="system.weight" value="{{system.weight}}" min="0"/>
+    </div>
+    <div class="form-group">
         <label for="skill">{{localize "ITEM.Weapon.skill"}}</label>
         <select id="skill" name="system.skill">
             <option value="meleeCombat" {{#if (eq system.skill "meleeCombat")}}selected{{/if}}>{{localize "ARKHAM_HORROR.SKILL.meleeCombat"}}</option>

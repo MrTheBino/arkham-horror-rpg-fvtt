@@ -17,6 +17,11 @@ export default class ArkhamHorrorCharacter extends ArkhamHorrorActorBase {
       unused: new fields.NumberField({ ...requiredInteger, initial: 0 })
     });
 
+    schema.loadCapacity = new fields.SchemaField({
+      max: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      current: new fields.NumberField({ ...requiredInteger, initial: 0 })
+    });
+
     schema.background = new fields.SchemaField({
       placeOfOrigin: new fields.StringField({ required: false, blank: true }),
       familyAndFriends: new fields.StringField({ required: false, blank: true }),

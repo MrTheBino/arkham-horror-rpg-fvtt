@@ -156,6 +156,10 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         );
 
         let items = this._prepareItems();
+
+        // is automatic calculation enabled of the load capacity?
+        context.isAutoLoadCapacityEnabled  = game.settings.get("arkham-horror-rpg-fvtt", "characterLoadCapacity");
+
         foundry.utils.mergeObject(context, items);
         return context;
     }
@@ -204,6 +208,17 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
 
         // sort knacks by tier
         knacks.sort((a, b) => a.system.tier - b.system.tier);
+
+        // caluculate total weight of items
+        if(game.settings.get("arkham-horror-rpg-fvtt", "characterLoadCapacity")){
+            let totalWeight = 0;
+            for (const item of inventory) {
+                if(item.system.weight > 0){
+                    totalWeight += item.system.weight * (item.system.quantity || 1);
+                }
+            }
+            this.document.system.loadCapacity.current = totalWeight;
+        }
 
         return { knacks: knacks, personalityTrait: personalityTrait, weapons: weapons, protectiveEquipments: protectiveEquipments, usefulItems: usefulItems, tomes: tomes, relics: relics, injuries: injuries,favors: favors  };
     }

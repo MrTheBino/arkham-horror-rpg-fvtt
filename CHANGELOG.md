@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.0.11 ALPHA
+- added spell item
+- added new config settings
+- improved styling
+- added load capacity for characters, auto calc or manually (Terra Antartica rules)
+- added range info to weapons in actor sheets
+- added system settings for injury & horror tables
+
 ## 13.0.10 ALPHA
 - bug fixes
   

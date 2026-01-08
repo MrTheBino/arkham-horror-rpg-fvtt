@@ -1,6 +1,6 @@
 export async function enrichHTML(key, document) {
-    await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-        foundry.utils.getProperty(document.system, key),
+    return await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+        foundry.utils.getProperty(document, key),
         {
             // Whether to show secret blocks in the finished html
             secrets: document.isOwner,

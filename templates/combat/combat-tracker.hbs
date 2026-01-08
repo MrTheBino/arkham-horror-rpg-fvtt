@@ -3,10 +3,10 @@
     <li class="combat-group-banner {{#if group.isActive}}is-active{{/if}}"
         data-side="{{group.key}}">
       <div class="flexrow">
-        <h5 class="combat-group-title flex1">{{group.label}}</h5>
+        <div class="combat-group-title flex1">{{group.label}}</div>
         {{#if @first}}
           <div class="token-initiative" data-tooltip="Dice Pool">
-            <span class="initiative">Dice Pool</span>
+            <span class="initiative">DP</span>
           </div>
         {{/if}}
       </div>

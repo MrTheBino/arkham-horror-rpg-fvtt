@@ -106,6 +106,7 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
 
         if (actorData.system.specialRules) {
             context.specialRulesHTML = await enrichHTML('system.specialRules',this.document);
+            console.log("done");
         }
 
         if(actorData.system.defensiveBenefit){

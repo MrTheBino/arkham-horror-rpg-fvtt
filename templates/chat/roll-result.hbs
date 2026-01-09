@@ -1,40 +1,61 @@
-<form class="roll-card">
-    <div class="card-title">
-        Dice roll
-    </div>
-    <div class="roll-result">
-        <p>{{skillUsed}} - Success On: {{successOn}}+</p>
-        <p>Successes Needed: {{successesNeeded}}</p>
-        <p>Bonus Dice: {{bonusDice}}</p>
-        <p>Advantage/Disadvantage: {{#if rollWithAdvantage}}Advantage{{else if rollWithDisadvantage}}Disadvantage{{else}}None{{/if}}</p>
-        <p>Dice Pool: {{oldDicePoolValue}} reduced to {{newDicePoolValue}}</p>
-    </div>
-    <div class="roll-result">
-        {{{diceRollHTML}}}
-    </div>
-    {{#if horrorDiceUsed}}
-    <div class="roll-result">
-        <p>Horror</p>
-        {{{horrorDiceRollHTML}}}
-    </div>
-    {{/if}}
-    <div class="roll-result">
-        <div class="dice-results-container">
-            {{#each results}}
-            <span class="dice-result {{#if isHorror}}horror-die{{else}}{{#if (gte this.result ../successOn)}}success{{else if (eq this.result 1)}}failure{{/if}}{{/if}}">
-                {{this.result}}
-            </span>
-            {{/each}}
+<section class="arkham-roll-card">
+    <header class="arkham-roll-header">
+        <div class="arkham-roll-heading">
+            <span class="arkham-roll-kind">{{skillUsed}}</span>
         </div>
-        <p>
-            Successes: {{successCount}} Failures: {{failureCount}} Trauma: {{horrorFailureCount}}
-        </p>
-    </div>
-    <div class="roll-result">
+        <div class="arkham-roll-subtitle">Success on <span class="arkham-emph">{{successOn}}+</span></div>
+    </header>
+
+    <div class="arkham-roll-banner {{#if isSuccess}}is-success{{else}}is-failure{{/if}}">
         {{#if isSuccess}}
-        <p class="success-text">The roll was a SUCCESS!</p>
+            SUCCESS
         {{else}}
-        <p class="failure-text">The roll was a FAILURE!</p>
+            FAILURE
         {{/if}}
     </div>
-</form>
+
+    <div class="arkham-roll-results">
+        <div class="arkham-dice-results">
+            <div class="dice-results-container arkham-dice-results-container"{{#if horrorDiceUsed}} title="Horror dice are marked in black."{{/if}}>
+                {{#each results}}
+                    <span class="dice-result arkham-die {{#if isHorror}}horror-die{{else}}{{#if (gte this.result ../successOn)}}success{{else if (eq this.result 1)}}failure{{/if}}{{/if}}">
+                        {{this.result}}
+                    </span>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="arkham-totals">
+            <div class="arkham-total">
+                <span class="arkham-total-label">Successes</span>
+                <span class="arkham-total-value">{{successCount}}</span>
+            </div>
+            <div class="arkham-total">
+                <span class="arkham-total-label">Failures</span>
+                <span class="arkham-total-value">{{failureCount}}</span>
+            </div>
+            <div class="arkham-total">
+                <span class="arkham-total-label">Trauma</span>
+                <span class="arkham-total-value">{{horrorFailureCount}}</span>
+            </div>
+        </div>
+
+        <div class="arkham-roll-flags">
+            {{#if rollWithAdvantage}}
+                <span class="arkham-roll-flag is-adv">Advantage</span>
+            {{/if}}
+            {{#if rollWithDisadvantage}}
+                <span class="arkham-roll-flag is-dis">Disadvantage</span>
+            {{/if}}
+
+            <span class="arkham-roll-flag is-diff">
+                {{#if (eq successesNeeded 1)}}Normal{{else if (eq successesNeeded 2)}}Difficult{{else if (eq successesNeeded 3)}}Very Difficult{{else}}Difficulty {{successesNeeded}}{{/if}}
+            </span>
+        </div>
+
+        <footer class="arkham-roll-footer">
+            <span class="arkham-roll-footer-left">Dice Pool: {{oldDicePoolValue}} → {{newDicePoolValue}}</span>
+            <span class="arkham-roll-footer-right">Bonus Dice: {{bonusDice}}</span>
+        </footer>
+    </div>
+</section>

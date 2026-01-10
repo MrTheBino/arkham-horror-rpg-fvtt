@@ -53,6 +53,25 @@
             </span>
         </div>
 
+        {{#if weaponUsed}}
+            <header class="arkham-roll-header">
+                <div class="arkham-roll-heading">
+                    <span class="arkham-roll-kind">{{weaponUsed.name}}</span>
+                </div>
+            </header>
+            
+            <div class="arkham-totals-weapon">
+                <div class="arkham-total">
+                    <span class="arkham-total-label">Damage</span>
+                    <span class="arkham-total-value">{{weaponDamage}}</span>
+                </div>
+                <div class="arkham-total">
+                    <span class="arkham-total-label">Inflict Injury</span>
+                    <span class="arkham-total-value">{{#if weaponInflictInjury}}<i class="fas fa-check"></i>{{else}}<i class="fas fa-times"></i>{{/if}}</span>
+                </div>
+            </div>
+        {{/if}}
+
         <footer class="arkham-roll-footer">
             <span class="arkham-roll-footer-left">Dice Pool: {{oldDicePoolValue}} → {{newDicePoolValue}}</span>
             <span class="arkham-roll-footer-right">Bonus Dice: {{bonusDice}}</span>

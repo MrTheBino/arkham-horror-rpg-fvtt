@@ -36,6 +36,42 @@ export class SkillRollWorkflow {
     return { normal, horror };
   }
 
+  processWeapon({ state, outcome }) {
+    // Implement weapon-specific logic here
+    // if there are any success return the damage
+    let result = {weaponUsageSuccess : false,weaponAmmoUsed: false};
+    if (state.weaponToUse) {
+      
+      if (outcome.successCount > 0) {
+        result.weaponUsageSuccess = true;
+        result.weaponDamage = state.weaponToUse.system.damage;
+      }else{
+        result.weaponDamage = 0;
+      }
+      if(outcome.successCount >= state.weaponToUse.system.injuryRating && state.weaponToUse.system.injuryRating > 0){
+        result.weaponInflictInjury = true;
+      }
+      result.weaponSpecialRules = state.weaponToUse.system.specialRules;
+      result.weaponUsed = state.weaponToUse;
+
+      //page 81 core rule book, if the final dice roll includes a 1, you expend one ammo
+      // TODO: check for special rules in the future
+      if(outcome.finalDiceRollResults.some(r => r.result === 1)){
+        if(state.weaponToUse.system.ammunition.max > 0){
+          state.weaponToUse.system.ammunition.current = Math.max(0, state.weaponToUse.system.ammunition.current - 1);
+          result.weaponAmmoUsed = true;
+          // update item
+          state.weaponToUse.update({"system.ammunition.current": state.weaponToUse.system.ammunition.current});
+          console.log("decreased ammo for weapon" + state.weaponToUse.name);
+        }
+      }
+    }else{
+      result.weaponUsed = false;
+    }
+
+    return result;
+  }
+
   computeOutcome({ state, plan, exec }) {
     const diceRollResults = collectTaggedResults({
       normalResults: exec.normal.results,
@@ -48,11 +84,14 @@ export class SkillRollWorkflow {
       rollWithDisadvantage: plan.rollWithDisadvantage,
     });
 
-    const outcome = computeSkillOutcome(diceRollResults, {
+    let outcome = computeSkillOutcome(diceRollResults, {
       successOn: plan.successOn,
       penalty: plan.penalty,
       successesNeeded: state.successesNeeded,
     });
+
+    outcome = { ...outcome, ...this.processWeapon({ state, outcome }) };
+
 
     return {
       ...outcome,
@@ -100,6 +139,11 @@ export class SkillRollWorkflow {
       rollWithAdvantage: outcome.rollWithAdvantage,
       rollWithDisadvantage: outcome.rollWithDisadvantage,
       horrorDiceUsed: outcome.horrorDiceUsed,
+      weaponUsed: outcome.weaponUsed,
+      weaponUsageSuccess: outcome.weaponUsageSuccess,
+      weaponDamage: outcome.weaponDamage,
+      weaponInflictInjury: outcome.weaponInflictInjury,
+      weaponSpecialRules: outcome.weaponSpecialRules
     };
 
     return { template, chatData };

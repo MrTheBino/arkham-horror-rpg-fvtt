@@ -24,7 +24,8 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
             toggleFoldableContent: this.#handleToggleFoldableContent,
             clickSkill: this.#handleSkillClicked,
             clickWeaponReload: this.#handleWeaponReload,
-            clickedRefreshDicePool: this.#handleClickedRefreshDicePool
+            clickedRefreshDicePool: this.#handleClickedRefreshDicePool,
+            clickedRollWithWeapon: this.#handleClickedRollWithWeapon
         },
         form: {
             submitOnChange: true
@@ -269,7 +270,7 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         let skillMax = this.actor.system.skills[skillKey].max;
         let currentDicePool = this.actor.system.dicepool.value;
 
-        DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool }).render(true);
+        DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool, weaponToUse: null }).render(true);
     }
 
     static async #handleWeaponReload(event, target) {
@@ -304,5 +305,20 @@ export class ArkhamHorrorNpcSheet extends HandlebarsApplicationMixin(ActorSheetV
         let oldValue = this.actor.system.dicepool.value;
         let newValue = this.actor.system.dicepool.max - this.actor.system.damage;
         await this.actor.update({ 'system.dicepool.value': newValue });
+    }
+
+    static async #handleClickedRollWithWeapon(event, target) {
+        event.preventDefault();
+        const itemId = target.dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        if (item) {
+            let skillKey = item.system.skill;
+            let skillCurrent = this.actor.system.skills[skillKey].current;
+            let skillMax = this.actor.system.skills[skillKey].max;
+            let currentDicePool = this.actor.system.dicepool.value;
+            DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool, weaponToUse: item }).render(true);
+        } else {
+            console.error(`Item with ID ${itemId} not found on actor.`);
+        }
     }
 }

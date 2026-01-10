@@ -46,14 +46,14 @@
             {{#each weapons as |item id|}}
             <li class='item ' data-item-id='{{item._id}}'>
                 <div class="flexrow">
-                    <div class='item-name clickable' data-action="toggleFoldableContent"
+                    <div class='item-name' >
+                        <div class='item-image clickable' data-action="toggleFoldableContent"
                         data-fc-id="weapon{{item._id}}">
-                        <div class='item-image'>
                             <a class='rollable' data-roll-type='item'>
-                                <img src='{{item.img}}' title='{{item.name}}' width='24' height='24' />
+                                <img src='{{item.img}}' title='{{item.name}} - click to expand special rules' width='24' height='24' />
                             </a>
                         </div>
-                        <span>{{item.name}}</span>
+                        <span class="clickable" data-action="clickedRollWithWeapon" data-item-id="{{item._id}}">{{item.name}} <i class="fa-solid fa-dice"></i></span>
                     </div>
                     <div class='item-prop'>{{localize (concat "ARKHAM_HORROR.SKILL." item.system.skill)}}</div>
                     <div class='item-prop'>{{item.system.damage}}</div>

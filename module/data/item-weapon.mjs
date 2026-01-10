@@ -9,7 +9,7 @@ export default class ArkhamHorrorWeapon extends ArkhamHorrorItemBase {
     const requiredFloat = { required: true, nullable: false, integer: false };
     
     schema.skill = new fields.StringField({ required: true, blank: false, initial: "rangedCombat" });
-    schema.damage = new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 });
+    schema.damage = new fields.NumberField({ ...requiredInteger, initial: 1, min: 0 }); // there are weapons that do 0 damage but have other effects
     schema.range = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.injuryRating = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
     schema.ammunition = new fields.SchemaField({

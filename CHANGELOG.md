@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 13.0.15
+- basic handling of weapon usage in dice roll dialog, inc. basic ammo tracking
+
 ## 13.0.14
 - basic vehicle actor based on the Terra Antarctica campaign
   

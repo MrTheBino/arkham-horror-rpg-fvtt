@@ -17,6 +17,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     this.skillCurrent = options.skillCurrent;
     this.skillMax = options.skillMax;
     this.currentDicePool = options.currentDicePool;
+    this.weaponToUse = options.weaponToUse;
 
     // Single canonical "book" of parameters
     // (UI template context reads from here; workflow reads from here)
@@ -25,6 +26,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         skillCurrent: this.skillCurrent,
         skillMax: this.skillMax,
         currentDicePool: this.currentDicePool,
+        weaponToUse: this.weaponToUse,
 
         diceToUse: 0,
         penalty: 0,
@@ -73,12 +75,14 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (options.skillCurrent !== undefined) this.skillCurrent = options.skillCurrent;
     if (options.skillMax !== undefined) this.skillMax = options.skillMax;
     if (options.currentDicePool !== undefined) this.currentDicePool = options.currentDicePool;
+    if(options.weaponToUse !== undefined) this.weaponToUse = options.weaponToUse;
 
     // Keep rollState in sync (single book)
     this.rollState.skillKey = this.skillKey;
     this.rollState.skillCurrent = this.skillCurrent;
     this.rollState.skillMax = this.skillMax;
     this.rollState.currentDicePool = this.currentDicePool;
+    this.rollState.weaponToUse = this.weaponToUse;
 
     // Reset transient roll modifiers like your original code
     this.rollState.rollWithAdvantage = false;
@@ -116,6 +120,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         successesNeeded: this.rollState.successesNeeded,
         rollWithAdvantage: this.rollState.rollWithAdvantage,
         rollWithDisadvantage: this.rollState.rollWithDisadvantage,
+        weaponToUse: this.rollState.weaponToUse
     };
   }
 

@@ -10,12 +10,12 @@ everything on your own. This system provides only the necessary sheets and item 
 ## Features
 - full character sheet
 - npc sheets
-- item types: weapons, protective equipment, useful items, relics, tomes, injuries
+- vehicle sheets
+- item types: weapons, protective equipment, useful items, relics, tomes, injuries, spells, favors, knacks, trauma
 - basic dice rolling
   
 ## ToDo
 - bug fixing
-- weapon usage
 - styling
 
 ## Manifest-URL for manual installation of the system

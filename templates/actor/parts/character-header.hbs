@@ -11,7 +11,16 @@
         <div class="other">
             <div class="archetype-entry">
                 <label for="system.archetype" class="styled-label">ARCHETYPE</label>
+                {{#if system.archetypeUuid}}
+                <div class="form-fields" style="display:flex; gap:6px; align-items:center;">
+                    <input type="text" name="system.archetype" value="{{system.archetype}}" readonly data-action="openActorArchetype" title="Open Archetype" style="flex:1; cursor:pointer;" />
+                    <a class="item-control" data-action="openActorArchetype" title="Open Archetype">
+                        <i class="fas fa-up-right-from-square"></i>
+                    </a>
+                </div>
+                {{else}}
                 <input type="text" name="system.archetype" value="{{system.archetype}}" />
+                {{/if}}
             </div>
             <div class="xp">
                 <div class="grid grid-3col">

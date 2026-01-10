@@ -21,6 +21,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             createItem: this.#handleCreateItem,
             deleteItem: this.#handleDeleteItem,
             toggleFoldableContent: this.#handleToggleFoldableContent,
+            openActorArchetype: this.#handleOpenActorArchetype,
             clickSkill: this.#handleSkillClicked,
             clickWeaponReload: this.#handleWeaponReload,
             clickedRefreshDicePool: this.#handleClickedRefreshDicePool,
@@ -96,9 +97,143 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         super(options)
     }
 
-    async _onDropItem(event, data) {
+    /** @inheritDoc */
+    async _onDrop(event) {
+        const data = TextEditor.getDragEventData(event);
 
-        // Standardverhalten beibehalten
+        if (data?.type === 'ArkhamHorrorArchetypeKnack') {
+            await this.#onDropArchetypeKnack(event, data);
+            return;
+        }
+
+        return super._onDrop?.(event);
+    }
+
+    async #onDropArchetypeKnack(event, data) {
+        const uuid = data?.uuid;
+        const tier = Number(data?.tier);
+        const sourceArchetypeUuid = data?.archetypeUuid;
+
+        if (!uuid || !tier || tier < 1 || tier > 4) {
+            ui.notifications.warn('Invalid archetype knack drop data.');
+            return;
+        }
+
+        const actorArchetypeUuid = this.document.system?.archetypeUuid;
+        if (!actorArchetypeUuid) {
+            ui.notifications.warn('Set an archetype on this actor before purchasing knacks.');
+            return;
+        }
+        if (sourceArchetypeUuid && actorArchetypeUuid !== sourceArchetypeUuid) {
+            ui.notifications.warn('This knack belongs to a different archetype.');
+            return;
+        }
+
+        const archetype = await fromUuid(actorArchetypeUuid);
+        if (!archetype || archetype.type !== 'archetype') {
+            ui.notifications.warn('Actor archetype reference is invalid.');
+            return;
+        }
+
+        const tierData = archetype.system?.knackTiers?.[tier] ?? {};
+        const allowed = (tierData.allowedKnacks ?? []).some(e => e?.uuid === uuid);
+        if (!allowed) {
+            ui.notifications.warn(`That knack is not allowed for Tier ${tier} by the actor's archetype.`);
+            return;
+        }
+
+        const maxPurchasable = Number(archetype.system?.knackTiers?.[tier]?.maxPurchasable ?? 0);
+        if (maxPurchasable <= 0) {
+            ui.notifications.warn(`No Tier ${tier} knacks can be purchased for this archetype (max is ${maxPurchasable}).`);
+            return;
+        }
+
+        // Policy: this counts ALL owned Knacks by tier (even if added via some other workflow)
+        // to enforce the archetype's tier limits system-wide for this actor.
+        const existingTierCount = (this.document.items?.contents ?? [])
+            .filter(i => i.type === 'knack')
+            .filter(i => Number(i.system?.tier ?? 0) === tier)
+            .length;
+
+        if (existingTierCount >= maxPurchasable) {
+            ui.notifications.warn(`Tier ${tier} knack limit reached (${existingTierCount}/${maxPurchasable}).`);
+            return;
+        }
+
+        // Deduplication: when the knack was originally sourced from a UUID (pack/world), we store it in flags.core.sourceId.
+        // If present, use that to avoid creating duplicates.
+        const existing = (this.document.items?.contents ?? [])
+            .find(i => i.type === 'knack' && i.flags?.core?.sourceId === uuid);
+
+        if (existing) {
+            await existing.update({
+                'system.tier': tier,
+                [`flags.arkham-horror-rpg-fvtt.archetypeUuid`]: actorArchetypeUuid,
+                [`flags.arkham-horror-rpg-fvtt.archetypeTier`]: tier
+            });
+            ui.notifications.info('Knack already owned; updated tier to match archetype.');
+            return;
+        }
+
+        const source = await fromUuid(uuid);
+        if (!source || source.type !== 'knack') {
+            ui.notifications.warn('Could not resolve the source knack item.');
+            return;
+        }
+
+        const itemData = foundry.utils.deepClone(source.toObject());
+        delete itemData._id;
+        itemData.system = itemData.system ?? {};
+        itemData.system.tier = tier;
+        itemData.flags = itemData.flags ?? {};
+        itemData.flags.core = itemData.flags.core ?? {};
+        itemData.flags.core.sourceId = uuid;
+        itemData.flags['arkham-horror-rpg-fvtt'] = {
+            ...(itemData.flags['arkham-horror-rpg-fvtt'] ?? {}),
+            archetypeUuid: actorArchetypeUuid,
+            archetypeTier: tier
+        };
+
+        // NOTE: v13 best practice is usually `this.document.createEmbeddedDocuments('Item', [itemData])`.
+        // Leaving as-is for now.
+        await ArkhamHorrorItem.create(itemData, { parent: this.document });
+    }
+
+    async _onDropItem(event, data) {
+        try {
+            const dropped = await Item.fromDropData(data);
+            if (dropped?.type === 'archetype') {
+                const updateData = {
+                    'system.archetypeUuid': dropped.uuid,
+                    'system.archetype': dropped.name
+                };
+
+                const skillCaps = dropped.system?.skillCaps ?? {};
+                for (const skillKey of Object.keys(skillCaps)) {
+                    // Ignore any unexpected keys which aren't actual actor skills.
+                    if (!(skillKey in (this.document.system?.skills ?? {}))) continue;
+                    const cap = Number(skillCaps?.[skillKey] ?? 0);
+                    // Always overwrite the actor's max values from the newly-dropped archetype.
+                    // Otherwise, switching archetypes can leave behind stale/manual caps from the previous archetype.
+                    updateData[`system.skills.${skillKey}.max`] = Number.isFinite(cap) ? cap : 0;
+
+                    // Only clamp current when an actual cap is present.
+                    if (Number.isFinite(cap) && cap > 0) {
+                        const current = Number(this.document.system?.skills?.[skillKey]?.current ?? 0);
+                        if (Number.isFinite(current) && current > cap) {
+                            updateData[`system.skills.${skillKey}.current`] = cap;
+                        }
+                    }
+                }
+
+                await this.document.update(updateData);
+                ui.notifications.info(`Archetype set to ${dropped.name}.`);
+                return;
+            }
+        } catch (e) {
+            // Fall through to default handling
+        }
+
         return super._onDropItem(event, data);
     }
 
@@ -325,6 +460,34 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         document.querySelectorAll(`.foldable-content[data-fc-id="${fcId}"]`).forEach(fcElement => {
             fcElement.classList.toggle('collapsed');
         });
+    }
+
+    static async #handleOpenActorArchetype(event, target) {
+        event.preventDefault();
+        await this.openActorArchetype(event, target);
+    }
+
+    async openActorArchetype(event, target) {
+        const uuid = this.document.system?.archetypeUuid;
+        if (!uuid) {
+            ui.notifications.warn('This actor has no archetype set.');
+            return;
+        }
+
+        try {
+            const doc = await fromUuid(uuid);
+            if (!doc) {
+                ui.notifications.warn('Could not resolve actor archetype UUID.');
+                return;
+            }
+            if (doc.type !== 'archetype') {
+                ui.notifications.warn('The linked document is not an archetype.');
+                return;
+            }
+            doc.sheet?.render(true);
+        } catch (e) {
+            ui.notifications.warn('Failed to open archetype.');
+        }
     }
 
     static async #handleSkillClicked(event, target) {

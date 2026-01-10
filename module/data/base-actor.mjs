@@ -7,6 +7,8 @@ export default class ArkhamHorrorActorBase extends ArkhamHorrorDataModel {
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = {};
 
+    const DocumentUUIDField = fields.DocumentUUIDField ?? fields.StringField;
+
     schema.dicepool = new fields.SchemaField({
       value: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 6 })
@@ -15,6 +17,7 @@ export default class ArkhamHorrorActorBase extends ArkhamHorrorDataModel {
     schema.damage = new fields.NumberField({ ...requiredInteger, initial: 0 });
     schema.horror = new fields.NumberField({ ...requiredInteger, initial: 0 });
     schema.archetype = new fields.StringField({ required: true, blank: true });
+    schema.archetypeUuid = new DocumentUUIDField({ required: false, nullable: true });
 
      schema.skills = new fields.SchemaField({
       agility: new fields.SchemaField({

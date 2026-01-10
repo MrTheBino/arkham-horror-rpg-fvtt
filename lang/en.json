@@ -1,6 +1,7 @@
 {
   "ARKHAM_HORROR": {
     "Ability": {
+
       "Str": {
         "long": "Strength",
         "abbr": "str"
@@ -125,7 +126,8 @@
       "relic": "Relic",
       "injury": "Injury",
       "trauma": "Trauma",
-      "favor": "Favor"
+      "favor": "Favor",
+      "archetype": "Archetype"
     }
   }
 }

@@ -71,7 +71,8 @@ Hooks.once('init', function () {
     relic: models.ArkhamHorrorRelic,
     injury: models.ArkhamHorrorInjury,
     trauma: models.ArkhamHorrorTrauma,
-    favor: models.ArkhamHorrorFavor
+    favor: models.ArkhamHorrorFavor,
+    archetype: models.ArkhamHorrorArchetype
   }
 
   // Active Effects are never copied to the Actor,

@@ -1,0 +1,84 @@
+<section class="tab {{tabs.form.id}} {{tabs.form.cssClass}} scrollable" id="form" data-tab="{{tabs.form.id}}"
+    data-group="{{tabs.form.group}}">
+
+    <div class="grid grid-2col" style="gap: 12px;">
+        <div class="flexcol" style="gap: 12px;">
+
+            <fieldset>
+                <legend>SKILL CAPS</legend>
+                <div class="flexcol" style="gap: 8px;">
+                    {{#each skillCapKeys as |skillKey|}}
+                    <div class="form-group" style="margin: 0;">
+                        <label for="{{skillKey}}Cap">{{localize (concat "ARKHAM_HORROR.SKILL." skillKey)}}</label>
+                        <div class="form-fields"><input type="number" id="{{skillKey}}Cap" name="system.skillCaps.{{skillKey}}" value="{{lookup ../system.skillCaps skillKey}}" min="0" /></div>
+                    </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Tier Purchase Limits</legend>
+                <div class="flexcol" style="gap: 12px;">
+                    {{#each knackTiers as |t|}}
+                    <div class="flexcol" style="gap: 8px;">
+                        <div class="form-group" style="margin: 0;">
+                            <label for="tier{{@key}}Max">Tier {{@key}} Max</label>
+                            <div class="form-fields">
+                                <input type="number" id="tier{{@key}}Max" name="system.knackTiers.{{@key}}.maxPurchasable" value="{{t.maxPurchasable}}" min="0" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin: 0;">
+                            <label for="tier{{@key}}Xp">Tier {{@key}} XP Cost</label>
+                            <div class="form-fields">
+                                <input type="number" id="tier{{@key}}Xp" name="system.knackTiers.{{@key}}.xpcost" value="{{t.xpcost}}" min="0" />
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Source</legend>
+                <div class="form-group" style="margin: 0;">
+                    <label for="archetypeSource">Source</label>
+                    <div class="form-fields">
+                        <input type="text" id="archetypeSource" name="system.sourceBook" value="{{system.sourceBook}}" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="flexcol" style="gap: 12px;">
+            <fieldset>
+                <legend>KNACK TIERS</legend>
+                <p class="arkham-horror-hint">Drag &amp; drop Knack Items onto a tier below to add their UUID (no embedding). Click a knack name to view its description.</p>
+                {{#each knackTiers as |tier tierNumber|}}
+                <fieldset class="archetype-tier-drop" data-archetype-tier="{{tierNumber}}">
+                    <legend>Tier {{tierNumber}}</legend>
+
+                    {{#each tier.allowedKnacks as |k|}}
+                    <div class="knack-entry" draggable="true" data-drag-type="archetype-knack" data-uuid="{{k.uuid}}" data-tier="{{k.tier}}">
+                        <div>
+                            <strong class="clickable" data-action="toggleFoldableContent" data-fc-id="archetypeKnack{{tierNumber}}-{{@index}}">Tier {{k.tier}} - {{k.name}}</strong>
+                            <span class="small">({{k.sourceLabel}})</span>
+                            {{#if ../../isGM}}
+                            <a class="item-control" data-action="openUuidItem" data-uuid="{{k.uuid}}" title="View/Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="item-control" data-action="removeArchetypeKnack" data-tier="{{tierNumber}}" data-uuid="{{k.uuid}}" title="Remove">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            {{/if}}
+                        </div>
+                        <div class="foldable-content" data-fc-id="archetypeKnack{{tierNumber}}-{{@index}}">
+                            {{{k.descriptionHTML}}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </fieldset>
+                {{/each}}
+            </fieldset>
+        </div>
+    </div>
+</section>

@@ -19,3 +19,4 @@ export {default as ArkhamHorrorRelic} from "./item-relic.mjs";
 export {default as ArkhamHorrorInjury} from "./item-injury.mjs";
 export {default as ArkhamHorrorTrauma} from "./item-trauma.mjs";
 export {default as ArkhamHorrorFavor} from "./item-favor.mjs";
+export {default as ArkhamHorrorArchetype} from "./item-archetype.mjs";

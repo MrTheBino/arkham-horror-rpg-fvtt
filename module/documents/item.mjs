@@ -53,6 +53,9 @@ export class ArkhamHorrorItem extends Item {
       case 'spell':
         image = "systems/arkham-horror-rpg-fvtt/assets/icons/icon-spell.svg";
         break;
+      case 'archetype':
+        image = "systems/arkham-horror-rpg-fvtt/assets/icons/icon-archetype.svg";
+        break;
     }
 
     if (image != null) {

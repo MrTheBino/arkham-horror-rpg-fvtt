@@ -933,6 +933,9 @@ li.chat-message.message > .message-content {
   margin-right: 5px;
   cursor: pointer;
 }
+.system-arkham-horror-rpg-fvtt .tab-biography {
+  height: 100%;
+}
 .system-arkham-horror-rpg-fvtt .resource-label {
   font-weight: bold;
 }

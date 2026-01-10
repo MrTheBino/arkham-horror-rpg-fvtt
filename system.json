@@ -6,6 +6,10 @@
     {
       "name": "MrTheBino",
       "discord": "MrTheBino"
+    },
+    {
+      "name": "Fresnoth",
+      "discord": "fresnoth"
     }
   ],
   "url": "Replace this with a link to your public repository",
@@ -20,7 +24,7 @@
       "thumbnail": "systems/arkham-horror-rpg-fvtt/assets/anvil-impact.png"
     }
   ],
-  "version": "13.0.12",
+  "version": "13.0.13",
   "compatibility": {
     "minimum": 13,
     "verified": "13"

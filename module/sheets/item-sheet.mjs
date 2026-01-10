@@ -6,6 +6,15 @@ import { enrichHTML } from "../util/util.mjs"
 export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     #dragDrop // Private field to hold dragDrop handlers
     #dragDropBoundElement
+    // Right now need these 4 helpers to be able to force auto save of the archetype document since default
+    // ItemSheetV2 autosave interactions are lagging, when we are qucick change then drag dropping knacks
+    //  onto the actors, without these 4 helpers there can be scenarios where
+    // we change the archetype max knacks for a tier but it doesn't update the policy on the actor and thus
+    // prevents drag dropping which causes a bad UX.  If there is a better way to do this I am open to it.
+    #archetypeAutosaveBoundElement
+    #archetypeAutosaveTimer
+    #archetypeAutosavePending = {}
+    #archetypeAutosaveHandler
 
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
@@ -78,6 +87,79 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
     constructor(options = {}) {
         super(options)
         this.#dragDrop = this.#createDragDropHandlers()
+        this.#archetypeAutosaveHandler = this.#onArchetypeAutosaveEvent.bind(this)
+    }
+
+    #bindArchetypeAutosaveHandlers() {
+        if (this.document.type !== 'archetype') return
+        if (!this.isEditable) return
+        if (!(game.user?.isGM ?? false)) return
+
+        if (this.#archetypeAutosaveBoundElement === this.element) return
+
+        this.element.addEventListener('input', this.#archetypeAutosaveHandler, true)
+        this.element.addEventListener('change', this.#archetypeAutosaveHandler, true)
+        this.#archetypeAutosaveBoundElement = this.element
+    }
+
+    #coerceFormValue(target) {
+        if (!target) return undefined
+        if (target.type === 'checkbox') return Boolean(target.checked)
+
+        if (target.type === 'number' || target.dataset?.dtype === 'Number') {
+            // Foundry number fields sometimes allow an empty string while editing; treat that as 0.
+            const raw = target.value
+            if (raw === '' || raw === null || raw === undefined) return 0
+            const n = Number(raw)
+            return Number.isFinite(n) ? n : 0
+        }
+
+        return target.value
+    }
+
+    #queueArchetypeAutosave(update) {
+        Object.assign(this.#archetypeAutosavePending, update)
+        if (this.#archetypeAutosaveTimer) clearTimeout(this.#archetypeAutosaveTimer)
+
+        // Debounce persistence so typing doesn't spam DB writes.
+        this.#archetypeAutosaveTimer = setTimeout(async () => {
+            this.#archetypeAutosaveTimer = null
+            const pending = this.#archetypeAutosavePending
+            this.#archetypeAutosavePending = {}
+
+            if (!pending || Object.keys(pending).length === 0) return
+
+            try {
+                // Persist without re-rendering the sheet to avoid focus churn.
+                await this.document.update(pending, { diff: true, render: false })
+            } catch (e) {
+                ui.notifications?.warn?.('Failed to auto-save Archetype changes.')
+            }
+        }, 250)
+    }
+
+    #onArchetypeAutosaveEvent(event) {
+        if (this.document.type !== 'archetype') return
+        if (!this.isEditable) return
+        if (!(game.user?.isGM ?? false)) return
+
+        const target = event?.target
+        const name = target?.name
+        if (!name || typeof name !== 'string') return
+        if (!name.startsWith('system.')) return
+
+        const value = this.#coerceFormValue(target)
+        const update = { [name]: value }
+
+        // Immediately update local source so other workflows (like drag/drop) see the latest values
+        // even before the database write completes.
+        try {
+            this.document.updateSource(update)
+        } catch (e) {
+            return
+        }
+
+        this.#queueArchetypeAutosave(update)
     }
 
     /** @inheritDoc */
@@ -142,9 +224,6 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
         if (this.document.type === 'archetype') {
             context.isGM = game.user?.isGM ?? false;
             context.skillCapKeys = Object.keys(context.system?.skillCaps ?? {});
-
-            const allKnacks = await this.#getAvailableKnacks();
-            const knackMap = new Map(allKnacks.map(k => [k.uuid, k]));
             const docByUuid = new Map();
             const descriptionByUuid = new Map();
 
@@ -154,10 +233,8 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
 
                 const resolved = [];
                 for (const entry of normalized) {
-                    const known = knackMap.get(entry.uuid);
-
-                    let name = known?.name ?? entry.uuid;
-                    let sourceLabel = known?.sourceLabel ?? 'Unknown';
+                    let name = entry.uuid;
+                    let sourceLabel = 'Unknown';
 
                     let doc = docByUuid.get(entry.uuid);
                     if (!docByUuid.has(entry.uuid)) {
@@ -289,50 +366,6 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
 
         await this.document.update({ [structuredPath]: [...currentStructured, { uuid, tier }] });
     }
-
-    async #getAvailableKnacks() {
-        const knacks = [];
-
-        // World items
-        for (const item of (game.items?.contents ?? [])) {
-            if (item.type !== 'knack') continue;
-            knacks.push({
-                uuid: item.uuid,
-                name: item.name,
-                tier: Number(item.system?.tier ?? 0),
-                sourceLabel: game.world?.title ?? 'World'
-            });
-        }
-
-        // Compendiums
-        for (const pack of (game.packs?.values?.() ?? [])) {
-            if (pack.documentName !== 'Item') continue;
-            const index = await pack.getIndex({ fields: ['type', 'name', 'system.tier'] });
-            for (const entry of index) {
-                if (entry.type !== 'knack') continue;
-                const uuid = `Compendium.${pack.collection}.${entry._id}`;
-                knacks.push({
-                    uuid,
-                    name: entry.name,
-                    tier: Number(entry.system?.tier ?? 0),
-                    sourceLabel: pack.metadata?.label ?? pack.collection
-                });
-            }
-        }
-
-        knacks.sort((a, b) => {
-            if (a.tier !== b.tier) return a.tier - b.tier;
-            const an = (a.name ?? '').toLowerCase();
-            const bn = (b.name ?? '').toLowerCase();
-            if (an < bn) return -1;
-            if (an > bn) return 1;
-            return (a.sourceLabel ?? '').localeCompare(b.sourceLabel ?? '');
-        });
-
-        return knacks;
-    }
-
-    // NOTE: legacy resolution helpers were removed (no migration support).
 
 
     /** @override */
@@ -477,5 +510,7 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
             for (const dd of (this.#dragDrop ?? [])) dd.bind(this.element);
             this.#dragDropBoundElement = this.element;
         }
+
+        this.#bindArchetypeAutosaveHandlers()
     }
 }

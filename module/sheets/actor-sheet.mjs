@@ -24,8 +24,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
             openActorArchetype: this.#handleOpenActorArchetype,
             clickSkill: this.#handleSkillClicked,
             clickWeaponReload: this.#handleWeaponReload,
-            clickedRefreshDicePool: this.#handleClickedRefreshDicePool,
-            clickedRollWithWeapon: this.#handleClickedRollWithWeapon
+            clickedRefreshDicePool: this.#handleClickedRefreshDicePool
         },
         form: {
             submitOnChange: true
@@ -35,7 +34,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         },
         dragDrop: [{
             dragSelector: '[draggable="true"]',
-            dropSelector: '.mist-engine.actor'
+            dropSelector: '*' // this was .mist-engine.actor I am not sure if it was being used but changed to * for now?  
         }],
         window: {
             resizable: true,
@@ -497,7 +496,7 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
         let skillCurrent = this.actor.system.skills[skillKey].current;
         let skillMax = this.actor.system.skills[skillKey].max;
         let currentDicePool = this.actor.system.dicepool.value;
-        DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool,weaponToUse: null }).render(true);
+        DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool }).render(true);
     }
 
     static async #handleWeaponReload(event, target) {
@@ -517,21 +516,6 @@ export class ArkhamHorrorActorSheet extends HandlebarsApplicationMixin(ActorShee
                 const newMoney = currentMoney - reloadCost;
                 await this.actor.update({ 'system.mundaneResources.money': newMoney });
             }
-        } else {
-            console.error(`Item with ID ${itemId} not found on actor.`);
-        }
-    }
-
-    static async #handleClickedRollWithWeapon(event, target) {
-        event.preventDefault();
-        const itemId = target.dataset.itemId;
-        const item = this.actor.items.get(itemId);
-        if (item) {
-            let skillKey = item.system.skill;
-            let skillCurrent = this.actor.system.skills[skillKey].current;
-            let skillMax = this.actor.system.skills[skillKey].max;
-            let currentDicePool = this.actor.system.dicepool.value;
-            DiceRollApp.getInstance({ actor: this.actor, skillKey: skillKey, skillCurrent: skillCurrent, skillMax: skillMax, currentDicePool: currentDicePool, weaponToUse: item }).render(true);
         } else {
             console.error(`Item with ID ${itemId} not found on actor.`);
         }

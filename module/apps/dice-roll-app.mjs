@@ -35,6 +35,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
 
         rollWithAdvantage: false,
         rollWithDisadvantage: false,
+        modifierAdvantage: 0, // 0 = none, 1 = advantage, 2 = disadvantage, 3 = both, needed for the dialog and reactive updates
     };
 
     DiceRollApp.instance = this;
@@ -58,6 +59,8 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     },
     actions: {
         clickedRoll: this.#handleClickedRoll,
+        clickedIncreaseDicePool: this.#handleIncreaseDicePool,
+        clickedDecreaseDicePool: this.#handleDecreaseDicePool,
     },
   };
 
@@ -87,6 +90,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     // Reset transient roll modifiers like your original code
     this.rollState.rollWithAdvantage = false;
     this.rollState.rollWithDisadvantage = false;
+    this.rollState.modifierAdvantage = 0;
     this.rollState.diceToUse = 0;
     this.rollState.bonusDice = 0;
     this.rollState.penalty = 0;
@@ -120,6 +124,7 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
         successesNeeded: this.rollState.successesNeeded,
         rollWithAdvantage: this.rollState.rollWithAdvantage,
         rollWithDisadvantage: this.rollState.rollWithDisadvantage,
+        modifierAdvantage: this.rollState.modifierAdvantage,
         weaponToUse: this.rollState.weaponToUse
     };
   }
@@ -132,32 +137,11 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     event.preventDefault();
     const form = target.form;
 
-    // Update rollState FROM UI once
-    this.rollState.skillCurrent = Number.parseInt(form.skillCurrent.value) || 0;
-    this.rollState.diceToUse = Number.parseInt(form.diceToUse.value) || 0;
-    this.rollState.penalty = Number.parseInt(form.penalty.value) || 0;
-    this.rollState.bonusDice = Number.parseInt(form.bonus_dice.value) || 0;
-    this.rollState.successesNeeded = Number.parseInt(form.difficulty.value) || 0;
-
-    // Advantage / disadvantage selector logic (same as original intent)
-    const modifierAdvantage = Number.parseInt(form.advantageModifier.value) || 0;
-    if (modifierAdvantage === 1) {
-        this.rollState.rollWithAdvantage = true;
-        this.rollState.rollWithDisadvantage = false;
-    } else if (modifierAdvantage === 2) {
-        this.rollState.rollWithDisadvantage = true;
-        this.rollState.rollWithAdvantage = false;
-    } else if (modifierAdvantage === 3) {
-        this.rollState.rollWithAdvantage = true;
-        this.rollState.rollWithDisadvantage = true;
-    } else {
-        this.rollState.rollWithAdvantage = false;
-        this.rollState.rollWithDisadvantage = false;
-    }
+    this.updateRollStateWithForm(form);
 
     // If Adv/Disadv selected, you must be rolling at least 1 die
     const baseDice = (this.rollState.diceToUse || 0) + (this.rollState.bonusDice || 0);
-    if (modifierAdvantage !== 0 && baseDice <= 0) {
+    if (this.rollState.modifierAdvantage !== 0 && baseDice <= 0) {
         ui.notifications.warn("Advantage/Disadvantage requires rolling at least 1 die.");
         return; // keep dialog open
     } else if (baseDice <= 0) {
@@ -170,5 +154,54 @@ export class DiceRollApp extends HandlebarsApplicationMixin(ApplicationV2) {
     await workflow.run({ actor: this.actor, state: this.rollState });
 
     this.close();
+  }
+
+  updateRollStateWithForm(form){
+    // Update rollState FROM UI once
+    this.rollState.skillCurrent = Number.parseInt(form.skillCurrent.value) || 0;
+    this.rollState.diceToUse = Number.parseInt(form.diceToUse.value) || 0;
+    this.rollState.penalty = Number.parseInt(form.penalty.value) || 0;
+    this.rollState.bonusDice = Number.parseInt(form.bonus_dice.value) || 0;
+    this.rollState.successesNeeded = Number.parseInt(form.difficulty.value) || 0;
+
+    // Advantage / disadvantage selector logic (same as original intent)
+    this.rollState.modifierAdvantage = Number.parseInt(form.advantageModifier.value) || 0;
+    if (this.rollState.modifierAdvantage === 1) {
+        this.rollState.rollWithAdvantage = true;
+        this.rollState.rollWithDisadvantage = false;
+    } else if (this.rollState.modifierAdvantage === 2) {
+        this.rollState.rollWithDisadvantage = true;
+        this.rollState.rollWithAdvantage = false;
+    } else if (this.rollState.modifierAdvantage === 3) {
+        this.rollState.rollWithAdvantage = true;
+        this.rollState.rollWithDisadvantage = true;
+    } else {
+        this.rollState.rollWithAdvantage = false;
+        this.rollState.rollWithDisadvantage = false;
+    }
+  }
+
+  static async #handleIncreaseDicePool(event, target) {
+    event.preventDefault();
+    this.updateRollStateWithForm(event.target.form);
+
+    this.rollState.diceToUse += 1;
+    if(this.rollState.diceToUse > this.rollState.currentDicePool){
+      this.rollState.diceToUse = this.rollState.currentDicePool;
+    }
+    
+    this.render({ force: true });
+  }
+
+  static async #handleDecreaseDicePool(event, target) {
+    event.preventDefault();
+    this.updateRollStateWithForm(event.target.form);
+
+    this.rollState.diceToUse -= 1;
+    if(this.rollState.diceToUse < 0){
+      this.rollState.diceToUse = 0;
+    }
+
+    this.render({ force: true });
   }
 }

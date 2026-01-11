@@ -1,5 +1,10 @@
 .journal-page-content{
-h5 {
+
+  font-family: $font-tertiary;
+  text-align:justify;
+  font-size: 1.1em;
+
+  h5 {
       text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
       border-bottom: 1px solid $c-red;
       font-family: $font-primary;

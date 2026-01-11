@@ -11,7 +11,7 @@ everything on your own. This system provides only the necessary sheets and item 
 - full character sheet
 - npc sheets
 - vehicle sheets
-- item types: weapons, protective equipment, useful items, relics, tomes, injuries, spells, favors, knacks, trauma
+- item types: weapons, protective equipment, useful items, relics, tomes, injuries, spells, favors, knacks, trauma, archetypes
 - basic dice rolling
   
 ## ToDo

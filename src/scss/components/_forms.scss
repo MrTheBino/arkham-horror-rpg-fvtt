@@ -97,9 +97,6 @@
     flex-grow: 0.7;
     margin-right: 5px;
   }
-  input {
-    width: 100px;
-  }
 }
 
 .archetype-entry {
@@ -199,10 +196,13 @@
 
 .foldable-content {
   display: none;
-  background: rgba(0,0,0,0.05);
-  border-radius: 5px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 0px;
   padding: 5px;
-  color: black;
+  color: $c-faint;
+  text-align: justify;
+  font-family: $font-tertiary;
+  
   &.collapsed {
     display: block;
   }
@@ -247,6 +247,11 @@
 
 .medium-input {
   width: 40px;
+  height: 20px;
+}
+
+.medium-input-header {
+  width: 35px;
   height: 20px;
 }
 
@@ -315,4 +320,22 @@
     text-align: center;
     max-width: 40px;
   }
+}
+
+.button-dicepool-rolldialog{
+  background-color: $c-red;
+  color: white;
+  height: 32px;
+}
+
+.fancy-input{
+  /* TODO: Style fancy inputs */
+    /*background: transparent;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 6px 0px inset;
+    color: black;
+    text-align: center;
+    font-family: $font-tertiary;
+    font-weight: 400;
+    font-style: normal;*/
 }

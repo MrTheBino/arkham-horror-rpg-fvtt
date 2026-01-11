@@ -3,25 +3,25 @@
     <div class="grid grid-2col">
         <div class="form-group">
             <label for="money">Money</label>
-            <input type="number" name="system.mundaneResources.money" id="money"
+            <input type="number" name="system.mundaneResources.money" id="money" class="fancy-input"
                 value="{{system.mundaneResources.money}}" data-dtype="Number">
         </div>
         <div class="form-group">
             <label for="vehicle">Vehicle</label>
-            <input type="text" name="system.mundaneResources.vehicle" id="vehicle"
+            <input type="text" name="system.mundaneResources.vehicle" id="vehicle" class="fancy-input"
                 value="{{system.mundaneResources.vehicle}}" data-dtype="String">
         </div>
     </div>
     <div class="grid grid-2col">
         <div class="form-group">
             <label for="lodging">Lodging</label>
-            <input type="text" name="system.mundaneResources.lodging" id="lodging"
+            <input type="text" name="system.mundaneResources.lodging" id="lodging" class="fancy-input"
                 value="{{system.mundaneResources.lodging}}" data-dtype="String">
         </div>
         <div class="form-group">
             <label for="loadCapacity">Load Capacity (lbs)</label>
-            <input type="text" name="system.loadCapacity.current" value="{{system.loadCapacity.current}}" {{#if isAutoLoadCapacityEnabled}}disabled{{/if}} > /
-            <input type="text" name="system.loadCapacity.max" id="loadCapacity" 
+            <input type="text" class="fancy-input" name="system.loadCapacity.current" value="{{system.loadCapacity.current}}" {{#if isAutoLoadCapacityEnabled}}disabled{{/if}} > /
+            <input type="text" class="fancy-input" name="system.loadCapacity.max" id="loadCapacity" 
                 value="{{system.loadCapacity.max}}" data-dtype="String">
         </div>
     </div>

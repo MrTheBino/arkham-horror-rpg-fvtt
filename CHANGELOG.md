@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 13.0.16
+- improved styling
+- dice roll dialog with buttons to inc/decreae the number of dice used
+- archetypes item (drag'n' dropable to the character sheet)
+- dice roll results with support for GM Roll" "Blind Roll" "Self Roll"
+
 ## 13.0.15
 - basic handling of weapon usage in dice roll dialog, inc. basic ammo tracking
 

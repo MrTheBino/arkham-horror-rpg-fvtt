@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Voltaire&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Lusitana:wght@400;700&display=swap');
+
+.lusitana-bold {
+  font-family: "Lusitana", serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
 @font-face {
   font-family: Dicier;
@@ -12,6 +19,12 @@
   font-weight: normal;
 }
 
+
+@font-face {
+  font-family: Alegreya;
+  src: url("../assets/fonts/Alegreya-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
 
 @font-face {
   font-family: Teutonic;

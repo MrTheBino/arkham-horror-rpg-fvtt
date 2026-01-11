@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 /* Global styles */
 @import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Voltaire&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Lusitana:wght@400;700&display=swap");
 .window-app {
   font-family: "Teutonic", sans-serif;
 }
@@ -260,6 +261,12 @@
   text-align: center;
 }
 
+.lusitana-bold {
+  font-family: "Lusitana", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 @font-face {
   font-family: Dicier;
   src: url("../assets/fonts/Dicier-Flat-Heavy.woff2") format("woff2");
@@ -268,6 +275,11 @@
 @font-face {
   font-family: Dicier-Heavy;
   src: url("../assets/fonts/Dicier-Flat-Dark.woff2") format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Alegreya;
+  src: url("../assets/fonts/Alegreya-Regular.ttf") format("truetype");
   font-weight: normal;
 }
 @font-face {
@@ -351,6 +363,12 @@ form > nav > a.item.active {
 
 .editor.prosemirror {
   height: 100%;
+}
+
+prose-mirror .editor-content {
+  padding: 5px;
+  text-align: justify;
+  font-family: "Lusitana", serif;
 }
 
 .arkham-roll-card {
@@ -696,6 +714,11 @@ li.chat-message.message > .message-content {
   margin-top: 0;
 }
 
+.journal-page-content {
+  font-family: "Lusitana", serif;
+  text-align: justify;
+  font-size: 1.1em;
+}
 .journal-page-content h5 {
   text-shadow: 1px 1px rgba(210, 90, 63, 0.25);
   border-bottom: 1px solid #722A1C;
@@ -813,9 +836,6 @@ li.chat-message.message > .message-content {
   flex-grow: 0.7;
   margin-right: 5px;
 }
-.system-arkham-horror-rpg-fvtt .xp-entry input {
-  width: 100px;
-}
 .system-arkham-horror-rpg-fvtt .archetype-entry {
   display: flex;
   flex-direction: row;
@@ -894,10 +914,12 @@ li.chat-message.message > .message-content {
 }
 .system-arkham-horror-rpg-fvtt .foldable-content {
   display: none;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0px;
   padding: 5px;
-  color: black;
+  color: #c9c7b8;
+  text-align: justify;
+  font-family: "Lusitana", serif;
 }
 .system-arkham-horror-rpg-fvtt .foldable-content.collapsed {
   display: block;
@@ -934,6 +956,10 @@ li.chat-message.message > .message-content {
 }
 .system-arkham-horror-rpg-fvtt .medium-input {
   width: 40px;
+  height: 20px;
+}
+.system-arkham-horror-rpg-fvtt .medium-input-header {
+  width: 35px;
   height: 20px;
 }
 .system-arkham-horror-rpg-fvtt .large-input {
@@ -986,6 +1012,22 @@ li.chat-message.message > .message-content {
 .system-arkham-horror-rpg-fvtt .npc-skill-entry input, .system-arkham-horror-rpg-fvtt .skills-list input {
   text-align: center;
   max-width: 40px;
+}
+.system-arkham-horror-rpg-fvtt .button-dicepool-rolldialog {
+  background-color: #722A1C;
+  color: white;
+  height: 32px;
+}
+.system-arkham-horror-rpg-fvtt .fancy-input {
+  /* TODO: Style fancy inputs */
+  /*background: transparent;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 6px 0px inset;
+  color: black;
+  text-align: center;
+  font-family: $font-tertiary;
+  font-weight: 400;
+  font-style: normal;*/
 }
 .system-arkham-horror-rpg-fvtt .resource-label {
   font-weight: bold;
@@ -1109,3 +1151,5 @@ li.chat-message.message > .message-content {
 .editor.prosemirror {
   height: 100%;
 }
+
+/*# sourceMappingURL=arkham-horror-rpg-fvtt.css.map */

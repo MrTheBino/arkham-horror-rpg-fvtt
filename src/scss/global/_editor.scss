@@ -2,4 +2,13 @@
   &.prosemirror{
     height: 100%;
   }
+  
+}
+prose-mirror {
+  .editor-content{
+    padding: 5px;
+    text-align: justify;
+    font-family: $font-tertiary;
+  }
+  
 }

@@ -6,7 +6,7 @@ import {
     computeSkillOutcome,
     applyDicepoolCost,
 } from "../helpers/roll-engine.mjs";
-import { renderChatHtml, postChatMessage } from "../util/chat-utils.mjs";
+import { createArkhamHorrorChatCard } from "../util/chat-utils.mjs";
 
 
 export class SkillRollWorkflow {
@@ -151,10 +151,9 @@ export class SkillRollWorkflow {
 
   async post({ actor, state, outcome }) {
     const { template, chatData } = this.buildChat({ state, outcome });
-    const html = await renderChatHtml(template, chatData);
-    const message = await postChatMessage({ actor, html });
-    return { html, message, chatData };
-  }
+    // render and post chat message new method
+    return createArkhamHorrorChatCard( {actor, template, chatVars: chatData, flags: {"arkham-horror-rpg-fvtt": chatData}});
+    }
 
   /**
    * Convenience method: run end-to-end without an external orchestrator.

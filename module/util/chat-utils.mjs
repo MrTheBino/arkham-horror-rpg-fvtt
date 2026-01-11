@@ -2,11 +2,19 @@
 export async function renderChatHtml(templatePath, chatVars) {
   return foundry.applications.handlebars.renderTemplate(templatePath, chatVars);
 }
+// applies the roll mode to the chat data respecticting default foundry selectors and posts the message
+export async function applyChatModeAndPost(chatData, { rollMode = "roll" } = {}) {
+  const dataWithMode = ChatMessage.applyRollMode({ ...chatData }, rollMode);
+  return ChatMessage.create(dataWithMode);
+}
 
-// One place to handle top level chat message creation
-export async function postChatMessage({ actor, html }) {
-  return ChatMessage.create({
-    content: html,
-    speaker: ChatMessage.getSpeaker({ actor: actor }),
-  });
+// combines rendering and posting into a single function for Arkham Horror RPG chat cards
+// applies all chat data flags as well
+export async function createArkhamHorrorChatCard({ actor, template, chatVars, flags = {} }, options) {
+  const content = await renderChatHtml(template, chatVars);
+  return applyChatModeAndPost({ 
+    content, 
+    speaker: ChatMessage.getSpeaker({ actor: actor }), 
+    flags },
+     options);
 }

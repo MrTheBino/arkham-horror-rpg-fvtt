@@ -434,6 +434,7 @@
       }
     },
     "StatusEffects": {
+      "Cover": "Cobertura",
       "Burned": "Quemado",
       "Choking": "Asfixia",
       "Sickened": "Enfermo",

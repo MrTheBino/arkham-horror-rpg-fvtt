@@ -434,6 +434,7 @@
       }
     },
     "StatusEffects": {
+      "Cover": "Cover",
       "Burned": "Burned",
       "Choking": "Choking",
       "Sickened": "Sickened",

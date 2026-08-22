@@ -148,7 +148,7 @@ function normaliseNone(value) {
 
 /**
  * Foundry's `duration.label` can read "None" for a combat-based duration while no combat is running,
- * which hides the configured value. Fall back to the stored v13 or v14 duration fields in that case.
+ * which hides the configured value. Fall back to the stored duration fields for the current version.
  */
 function describeDuration(effect) {
   const label = normaliseNone(effect.duration?.label);
@@ -163,6 +163,7 @@ function describeDuration(effect) {
   const value = positiveNumber(stored.value);
   const units = String(stored.units ?? '');
   if (value && units) return `${value} ${game.i18n.localize(`EFFECT.DURATION.UNITS.${units}`)}`;
+  if (game.release.generation >= 14) return EM_DASH;
 
   const rounds = positiveNumber(stored.rounds);
   if (rounds) return `${rounds} ${game.i18n.localize('COMBAT.Rounds')}`;

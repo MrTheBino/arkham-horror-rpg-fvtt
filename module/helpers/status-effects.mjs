@@ -122,6 +122,9 @@ export function configureStatusEffects() {
     .map(id => cloneCoreStatus(coreStatuses, id, { hud: false }));
 
   const systemStatuses = [
+    systemStatus('cover', 'ARKHAM_HORROR.StatusEffects.Cover',
+      'icons/svg/shield.svg', 50),
+
     systemStatus('injury-slowed', 'ARKHAM_HORROR.InjuryTrauma.Fallback.Injury.Slowed',
       `${EFFECT_ICON_ROOT}/injury-slowed.svg`, 100),
     systemStatus('injury-nasty-cut', 'ARKHAM_HORROR.InjuryTrauma.Fallback.Injury.NastyCut',

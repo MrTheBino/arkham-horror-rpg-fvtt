@@ -434,6 +434,7 @@
       }
     },
     "StatusEffects": {
+      "Cover": "Deckung",
       "Burned": "Verbrannt",
       "Choking": "Am Ersticken",
       "Sickened": "Erkrankt",

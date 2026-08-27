@@ -10,6 +10,19 @@
         <hr />
 
         <div class="form-group">
+            <label class="styled-label" for="status-effect">{{localize "ARKHAM_HORROR.StatusEffects.ItemStatus"}}</label>
+            <select id="status-effect" name="system.statusEffectId">
+                <option value="">{{localize "ARKHAM_HORROR.StatusEffects.None"}}</option>
+                {{#each statusEffectChoices as |choice|}}
+                <option value="{{choice.id}}" {{#if choice.selected}}selected{{/if}}>{{choice.label}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="notes">{{localize "ARKHAM_HORROR.StatusEffects.ItemStatusHint"}}</div>
+
+        <hr />
+
+        <div class="form-group">
             <label class="styled-label">{{localize "ARKHAM_HORROR.TRAUMA_SHEET.TraumaRollModifier"}}</label>
             <input type="checkbox" name="system.traumaRollModifier.enabled" {{#if system.traumaRollModifier.enabled}}checked{{/if}}>
         </div>

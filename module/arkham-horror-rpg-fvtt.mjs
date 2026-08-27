@@ -29,6 +29,7 @@ import { refreshInsightAndPost, spendInsightAndPost, refreshInsight, spendInsigh
 import { applyKnackGrantsOnAcquire, removeKnackGrantedSpellsOnDelete } from './helpers/knacks.mjs';
 
 import { refreshDicepoolAndPost } from './helpers/dicepool.mjs';
+import { configureStatusEffects } from './helpers/status-effects.mjs';
 import * as money from './helpers/money.mjs';
 import { resourcesApi } from './api/resources/index.mjs';
 import { rollsApi } from './api/rolls/index.mjs';
@@ -69,6 +70,7 @@ Hooks.once('init', function () {
 
   // Add custom constants for configuration.
   CONFIG.ARKHAM_HORROR = ARKHAM_HORROR;
+  configureStatusEffects();
 
   // Override the sidebar Combat Tracker UI (Arkham is side-based, not initiative-based).
   CONFIG.ui.combat = ArkhamHorrorCombatTracker;

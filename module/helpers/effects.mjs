@@ -1,6 +1,16 @@
 /** Artwork a freshly created ActiveEffect starts with. */
 const NEW_EFFECT_IMG = 'icons/svg/aura.svg';
 
+// This function is a workaround for the fact that Foundry v14 changed the duration format from {rounds: 1} to {value: 1, units: 'rounds'} and the v13 format is no longer valid.
+// This function will return the correct format based on the Foundry version.
+// To maintain v13 compatibility, we will use the v13 format for Foundry v13 and the v14 format for Foundry v14 and above.
+// This function is not necessary if we hard limit the system to Foundry v14 and above, but we will keep it for now to maintain compatibility with v13.
+function oneRoundDuration() {
+  return game.release.generation >= 14
+    ? { value: 1, units: 'rounds' }
+    : { rounds: 1 };
+}
+
 /**
  * Collect every ActiveEffect that applies to an Actor, including the ones transferred from owned
  * Items. The system runs with `CONFIG.ActiveEffect.legacyTransferral = false`, so those effects stay
@@ -46,7 +56,7 @@ export async function createActiveEffect(owner, type = 'passive') {
     name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('DOCUMENT.ActiveEffect') }),
     img: NEW_EFFECT_IMG,
     origin: owner.uuid,
-    duration: type === 'temporary' ? { rounds: 1 } : {},
+    duration: type === 'temporary' ? oneRoundDuration() : {},
     disabled: type === 'inactive'
   }]);
 }
@@ -137,28 +147,31 @@ function normaliseNone(value) {
 }
 
 /**
- * Foundry's `duration.label` reads "None" for a round-based duration while no combat is running,
- * which hides the very information this column exists for. The computed `duration` object does not
- * carry `rounds`/`turns` either, so fall back to the stored values.
+ * Foundry's `duration.label` can read "None" for a combat-based duration while no combat is running,
+ * which hides the configured value. Fall back to the stored duration fields for the current version.
  */
 function describeDuration(effect) {
   const label = normaliseNone(effect.duration?.label);
   if (label !== EM_DASH) return label;
 
   const stored = effect._source?.duration ?? {};
-  const num = (value) => {
-    const n = Number(value);
-    // Permanent effects can report Infinity; that is "no duration", not a number to print.
-    return Number.isFinite(n) && n > 0 ? n : 0;
+  const positiveNumber = value => {
+    const number = Number(value);
+    return Number.isFinite(number) && number > 0 ? number : 0;
   };
 
-  const rounds = num(stored.rounds);
+  const value = positiveNumber(stored.value);
+  const units = String(stored.units ?? '');
+  if (value && units) return `${value} ${game.i18n.localize(`EFFECT.DURATION.UNITS.${units}`)}`;
+  if (game.release.generation >= 14) return EM_DASH;
+
+  const rounds = positiveNumber(stored.rounds);
   if (rounds) return `${rounds} ${game.i18n.localize('COMBAT.Rounds')}`;
 
-  const turns = num(stored.turns);
+  const turns = positiveNumber(stored.turns);
   if (turns) return `${turns} ${game.i18n.localize('COMBAT.Turns')}`;
 
-  const seconds = num(stored.seconds);
+  const seconds = positiveNumber(stored.seconds);
   if (seconds) return `${seconds} s`;
 
   return EM_DASH;

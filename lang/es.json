@@ -433,6 +433,23 @@
         }
       }
     },
+    "StatusEffects": {
+      "Cover": "Cobertura",
+      "Burned": "Quemado",
+      "Choking": "Asfixia",
+      "Sickened": "Enfermo",
+      "Bloodlust": "Sed de sangre",
+      "LossOfSight": "Pérdida de la vista",
+      "LossOfHearing": "Pérdida del oído",
+      "LossOfSmell": "Pérdida del olfato",
+      "NpcCower": "Acobardarse",
+      "NpcFlee": "Huir",
+      "NpcPanicked": "Presa del pánico",
+      "NpcStupefied": "Estupefacto",
+      "ItemStatus": "Estado del token",
+      "ItemStatusHint": "Crea un efecto activo transferido cuando este objeto pertenece a un actor. El efecto sigue el ajuste Activo del objeto.",
+      "None": "Ninguno"
+    },
     "Chat": {
       "RollResult": {
         "ReactionRollTooltip": "Tirada de reacción",

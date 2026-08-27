@@ -5,6 +5,7 @@ import { enrichHTML } from "../util/util.mjs"
 import { DiceRollApp } from "../apps/dice-roll-app.mjs";
 import { attuneTomeExclusive, clearTomeUnderstanding as clearTomeUnderstandingHelper, understandTomeAndLearnSpells } from "../helpers/tome.mjs";
 import { buildRollEffectContext, buildUsageContext } from "../data/fields/roll-effects.mjs";
+import { getItemStatusEffectChoices } from "../helpers/status-effects.mjs";
 
 export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     #dragDrop // Private field to hold dragDrop handlers
@@ -183,6 +184,14 @@ export class ArkhamHorrorItemSheet extends HandlebarsApplicationMixin(ItemSheetV
         context.system = actorData.system;
         context.flags = actorData.flags;
         context.item = this.document;
+
+        if (['injury', 'trauma'].includes(this.document.type)) {
+            context.statusEffectChoices = getItemStatusEffectChoices(
+                this.document.type,
+                String(actorData.system.statusEffectId ?? ''),
+                this.document.actor?.type ?? null
+            );
+        }
 
         // Adding a pointer to CONFIG.SHADOWCITY
         context.config = CONFIG.SHADOWCITY;

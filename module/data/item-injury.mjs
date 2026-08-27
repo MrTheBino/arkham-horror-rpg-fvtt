@@ -12,6 +12,10 @@ export default class ArkhamHorrorInjury extends ArkhamHorrorItemBase {
         // Allows future automation (e.g., knacks) to temporarily disable an injury without deleting it.
         schema.active = new fields.BooleanField({ required: true, nullable: false, initial: true });
 
+        // The status effect applied to the owning actor while an injury item is active on the actor.
+        // Currently these effects have no mechanical effect, but they are visible on the token on the canvas and can be used for automation.
+        schema.statusEffectId = new fields.StringField({ required: true, nullable: false, blank: true, initial: "" });
+
         // Successes needed to heal this injury (core p. 33-34): 1 by default, 2 for Severely
         // Injured / Loss of a Sense / Comatose, 3 for Dire. The value is also derivable from the
         // printed text ("requires two successes to heal"), which `helpers/healing.mjs` falls back

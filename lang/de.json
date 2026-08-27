@@ -433,6 +433,23 @@
         }
       }
     },
+    "StatusEffects": {
+      "Cover": "Deckung",
+      "Burned": "Verbrannt",
+      "Choking": "Am Ersticken",
+      "Sickened": "Erkrankt",
+      "Bloodlust": "Blutdurst",
+      "LossOfSight": "Verlust des Sehvermögens",
+      "LossOfHearing": "Verlust des Gehörs",
+      "LossOfSmell": "Verlust des Geruchssinns",
+      "NpcCower": "Kauern",
+      "NpcFlee": "Fliehen",
+      "NpcPanicked": "Panisch",
+      "NpcStupefied": "Benommen",
+      "ItemStatus": "Token-Status",
+      "ItemStatusHint": "Erzeugt einen übertragenen aktiven Effekt, wenn dieser Gegenstand einem Akteur gehört. Der Effekt folgt der Einstellung Aktiv des Gegenstands.",
+      "None": "Keiner"
+    },
     "Chat": {
       "RollResult": {
         "ReactionRollTooltip": "Reaktionswurf",

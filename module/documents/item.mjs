@@ -1,8 +1,22 @@
+import { synchronizeItemStatusEffect } from '../helpers/status-effects.mjs';
+
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
 export class ArkhamHorrorItem extends Item {
+  static async _onCreateOperation(documents, operation, user) {
+    await super._onCreateOperation(documents, operation, user);
+    if (user?.id !== game.user?.id) return;
+    for (const item of documents) await synchronizeItemStatusEffect(item);
+  }
+
+  static async _onUpdateOperation(documents, operation, user) {
+    await super._onUpdateOperation(documents, operation, user);
+    if (user?.id !== game.user?.id) return;
+    for (const item of documents) await synchronizeItemStatusEffect(item);
+  }
+
   /** @override */
   async _preUpdate(changed, options, userId) {
     await super._preUpdate(changed, options, userId);

@@ -433,6 +433,23 @@
         }
       }
     },
+    "StatusEffects": {
+      "Cover": "Cover",
+      "Burned": "Burned",
+      "Choking": "Choking",
+      "Sickened": "Sickened",
+      "Bloodlust": "Bloodlust",
+      "LossOfSight": "Loss of Sight",
+      "LossOfHearing": "Loss of Hearing",
+      "LossOfSmell": "Loss of Smell",
+      "NpcCower": "Cower",
+      "NpcFlee": "Flee",
+      "NpcPanicked": "Panicked",
+      "NpcStupefied": "Stupefied",
+      "ItemStatus": "Token status",
+      "ItemStatusHint": "Creates a transferred Active Effect when this item is owned by an Actor. The effect follows the item’s Active setting.",
+      "None": "None"
+    },
     "Chat": {
       "RollResult": {
         "ReactionRollTooltip": "Reaction roll",
